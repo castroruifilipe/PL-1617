@@ -17,7 +17,7 @@ END {
 	print("");
 	geraLocaisSaida(transacoes);
 	print("");
-	print(valorGasto(transacoes));
+	valorGastoParques(transacoes);
 
 }
 
@@ -48,11 +48,24 @@ function geraLocaisSaida(transacoes) {
 function valorGasto(transacoes) {
 	valor = 0;
 	for (i in transacoes) {
-		preco = strtod(transacoes[i]["IMPORTANCIA"], NULL);
-		print (preco);
+		preco = transacoes[i]["IMPORTANCIA"];
 		desconto = transacoes[i]["VALOR_DESCONTO"] + 0.0;
 		iva = (transacoes[i]["TAXA_IVA"] / 100) + 1;
-		valor = (preco - desconto);
+		valor += (preco - desconto);
+	}
+	return valor;
+}
+
+function valorGastoParques(transacoes) {
+	valor = 0;
+	for (i in transacoes) {
+		tipo = transacoes[i]["TIPO"];
+		if (tipo ~ /[Pp]arque/) {
+			preco = transacoes[i]["IMPORTANCIA"];
+			desconto = transacoes[i]["VALOR_DESCONTO"] + 0.0;
+			iva = (transacoes[i]["TAXA_IVA"] / 100) + 1;
+			valor = (preco - desconto);
+		}
 	}
 	return valor;
 }
