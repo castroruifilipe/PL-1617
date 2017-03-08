@@ -13,12 +13,23 @@ BEGIN {
 }
 
 END {
+	criaHTML(transacoes);
 	geraNEntradasPorData(transacoes);
 	print("");
 	geraLocaisSaida(transacoes);
 	print("");
 	valorGastoParques(transacoes);
 
+}
+
+function criaHTML(transacoes) {
+	title = "Via Verde - Extrato mensal";
+	img = "<body background = ""http://eidupont.scene7.com/is/image/eidupont/DBI_Corian_Color%20Chip_Whipped%20Cream-690x345"" bgproperties=""fixed"">";
+	enc = "<html> <head> <meta charset = 'UTF-8'/>" img "<title>" title "</title> </head>";
+	print enc > "index.html";
+	cabecalho = "<body> <h1>" title "</h1>";
+	print cabecalho > "index.html";
+	fmt = "<li> <a href='%s'> %s </a></li>\n";
 }
 
 function geraNEntradasPorData(transacoes) {
