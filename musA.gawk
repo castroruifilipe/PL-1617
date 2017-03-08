@@ -4,7 +4,7 @@ BEGIN {
 	r = 0;
 }
 
-$1 == "Singer" {	split($2, tmp,/[;]/);
+$1 == "singer" {	split($2, tmp,/[;]/);
 					for (i in tmp) {
 						singers[tmp[i]];
 	}
