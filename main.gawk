@@ -13,10 +13,46 @@ BEGIN {
 }
 
 END {
+	geraNEntradasPorData(transacoes);
+	print("");
+	geraLocaisSaida(transacoes);
+	print("");
+	print(valorGasto(transacoes));
+
+}
+
+function geraNEntradasPorData(transacoes) {
 	for (i in transacoes) {
-		print (i);
-		for (j in transacoes[i]) {
-			print (j": " transacoes[i][j]);
+		entrada = transacoes[i]["DATA_ENTRADA"];
+		if (entrada != "null") {
+			entradas[entrada]++;
 		}
 	}
+	for (i in entradas) {
+		print (i " - " entradas[i]);
+	}
+}
+
+function geraLocaisSaida(transacoes) {
+	for (i in transacoes) {
+		saida = transacoes[i]["SAIDA"];
+		if (saida != "null") {
+			saidas[saida] = 1;
+		}
+	}
+	for (i in saidas) {
+		print (i " - " saidas[i]);
+	}
+}
+
+function valorGasto(transacoes) {
+	valor = 0;
+	for (i in transacoes) {
+		preco = strtod(transacoes[i]["IMPORTANCIA"], NULL);
+		print (preco);
+		desconto = transacoes[i]["VALOR_DESCONTO"] + 0.0;
+		iva = (transacoes[i]["TAXA_IVA"] / 100) + 1;
+		valor = (preco - desconto);
+	}
+	return valor;
 }
