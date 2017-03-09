@@ -30,6 +30,15 @@ END {
 
 }
 
+function imprimeDadosCliente(dados, ficheiro) {
+	print("<p><b>Dados do cliente</b></p>") > ficheiro;
+	print("<p><b>NOME: </b>" dados["NOME"]"</p>") > ficheiro;
+	print("<p><b>NIF: </b>" dados["NIF"]"</p>") > ficheiro;
+	print("<p><b>MORADA: </b>" dados["MORADA"]) > ficheiro;
+	print("<b>CODIGO POSTAL: </b>" dados["CODIGO_POSTAL"]"</p>") > ficheiro;
+	print("<p><b>MATRÍCULA: </b>" dados["MATRICULA"]"</p>") > ficheiro;
+}
+
 function criaHTML(dados, transacoes) {
 	title = "Via Verde - Extrato mensal";
 	img = "<p><img src = http://www.meiosepublicidade.pt/wp-content/uploads/2015/10/ViaVerde_V_c-assin.jpg align=""right"" width=""708"" height=""414"" ></p>";
@@ -40,88 +49,103 @@ function criaHTML(dados, transacoes) {
 	
 	print cabecalho > "index.html";
 	print (img) > "index.html";
-	print("<p>________________________________________</p>") > "index.html";
-	print("<p><b>Dados do cliente</b></p>") > "index.html";
-	for (i in dados) print (i dados[i]) > "index.html";
-	print("<p>________________________________________</p>") > "index.html";
+	print("<p>___________________________________________________________</p>") > "index.html";
+	imprimeDadosCliente(dados, "index.html");
+	print("<p>___________________________________________________________</p>") > "index.html";
 	print ("<p><b>Total gasto no mês: </b>" valorGasto(transacoes) " € </p>") > "index.html";
 	print ("<p><b>Total gasto em parques: </b>" valorGastoParques(transacoes) " €</p>") > "index.html";
-	print("<p>________________________________________</p>") > "index.html";
+	print("<p>___________________________________________________________</p>") > "index.html";
 	printf (fmt, "entradasDia.html", "Entradas em cada dia do mês") > "index.html";
 	print("<p></p>") > "index.html";
 	printf (fmt, "listaSaidas.html", "Lista de saídas registadas") > "index.html";
-	print ("</body></html>") > "index.html";
-	print("<p>________________________________________</p>") > "index.html";
+	print("<p>___________________________________________________________</p>") > "index.html";
+	print ("</body></html>") > "index.html";	
 	
 	print enc > "entradasDia.html";
 	print cabecalho > "entradasDia.html";
+	print ("<h2>""Entradas por dia""</h2>") > "entradasDia.html";
+	print("<p>___________________________________________________________</p>") > "entradasDia.html";
 	print (img) > "entradasDia.html";
-	for (i in transacoes) {
-		entrada = transacoes[i]["DATA_ENTRADA"];
-		if (entrada != "null") {
-			entradas[entrada]++;
-		}
-	}
-	print ("<p><b>Data &emsp;&emsp;&emsp;&emsp;&emsp; Número de entradas</b></p>") > "entradasDia.html";
-	for (i in entradas) {
-		print ("<p>" i "&emsp;&emsp;&emsp;&emsp;&emsp;" entradas[i] "</p>") > "entradasDia.html";
-	}
+	imprimeNEntradasPorData(transacoes, "entradasDia.html");
+	print("<p>___________________________________________________________</p>") > "entradasDia.html";
 	print ("</body></html>") > "entradasDia.html";
 
 	print enc > "listaSaidas.html";
 	print cabecalho > "listaSaidas.html";
+	print ("<h2>""Lista de saídas registadas""</h2>") > "listaSaidas.html";
+	print("<p>___________________________________________________________</p>") > "listaSaidas.html";
 	print (img) > "listaSaidas.html";
-	for (i in transacoes) {
-		saida = transacoes[i]["SAIDA"];
-		if (saida != "null") {
-			saidas[saida] = 1;
-		}
-	}
-	print ("<p><b>Local de saída</b></p>") > "listaSaidas.html";
-	for (i in saidas) {
-		print ("<p>" i "</p>") > "listaSaidas.html";
-	}
+	imprimeLocaisSaida(transacoes, "listaSaidas.html");
+	print("<p>___________________________________________________________</p>") > "listaSaidas.html";
 	print ("</body></html>") > "listaSaidas.html";
 
 }
 
+function imprimeNEntradasPorData(transacoes, ficheiro) {
+	title = "Via Verde - Extrato mensal";
+	img = "<p><img src = http://www.meiosepublicidade.pt/wp-content/uploads/2015/10/ViaVerde_V_c-assin.jpg align=""right"" width=""708"" height=""414"" ></p>";
+	enc = "<html> <head> <meta charset = 'UTF-8'/>" "<title>" title "</title> </head>";
+	cabecalho = "<body> <h1>" title "</h1>";
+	fmt = "<li> <a href='%s'> %s </a></li>\n";
 
-
-
-
-
-
-function geraNEntradasPorData(transacoes) {
 	for (i in transacoes) {
 		entrada = transacoes[i]["DATA_ENTRADA"];
 		if (entrada != "null") {
 			entradas[entrada]++;
 		}
 	}
-	for (i in entradas) {
-		print (i " - " entradas[i]);
+
+	print ("<p><b>&emsp; Data &emsp;&emsp;&emsp;&emsp;&emsp; Número de entradas &emsp;&emsp;&emsp;&emsp;&emsp; Ver registos</b></p>") > ficheiro;
+	for (data in entradas) {
+		print("<p>" data "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" entradas[data] "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;") > ficheiro;
+		print("<a href='"data".html'> aqui </a></p>") > ficheiro;
+
+		print enc > data".html";
+		print cabecalho > data".html";
+		print img > data".html";
+		print "<h2>Data: " data "</h2>" > data".html";
+		print "<p><b>Número total de registos: </b>" entradas[data] "</p>" > data".html";
+		print("<p>___________________________________________________________</p>") > data".html";
 	}
+
+	for (i in transacoes) {
+		imprimeTransacao(transacoes[i], transacoes[i]["DATA_ENTRADA"]".html");
+	}
+	
+	for (data in entradas) {
+		print("<p>___________________________________________________________</p>") > data".html";
+		print ("</body></html>") > data".html";
+	}
+	
 }
 
-function geraLocaisSaida(transacoes) {
+function imprimeTransacao(transacao, ficheiro) {
+	for (i in transacao) {
+		print("<p><b>" i ": </b>" transacao[i] "</p>") > ficheiro;
+	}
+	print("<p>----------------------------------------------------------------</p>") > ficheiro;
+}
+
+function imprimeLocaisSaida(transacoes, ficheiro) {
 	for (i in transacoes) {
 		saida = transacoes[i]["SAIDA"];
 		if (saida != "null") {
 			saidas[saida] = 1;
 		}
 	}
+	print ("<p><b>Local de saída</b></p>") > ficheiro;
 	for (i in saidas) {
-		print (i " - " saidas[i]);
+		print ("<p>" i "</p>") > ficheiro;
 	}
 }
 
 function valorGasto(transacoes) {
 	valor = 0;
 	for (i in transacoes) {
-		preco = transacoes[i]["IMPORTANCIA"];
+		preco = transacoes[i]["IMPORTANCIA"] + 0.0;
 		desconto = transacoes[i]["VALOR_DESCONTO"] + 0.0;
 		iva = (transacoes[i]["TAXA_IVA"] / 100) + 1;
-		valor += (preco - desconto);
+		valor += (preco - desconto) * iva;;
 	}
 	return valor;
 }
@@ -134,7 +158,7 @@ function valorGastoParques(transacoes) {
 			preco = transacoes[i]["IMPORTANCIA"];
 			desconto = transacoes[i]["VALOR_DESCONTO"] + 0.0;
 			iva = (transacoes[i]["TAXA_IVA"] / 100) + 1;
-			valor = (preco - desconto);
+			valor = (preco - desconto) * iva;
 		}
 	}
 	return valor;
