@@ -1,4 +1,4 @@
-BEGIN { 
+BEGIN {
 	FS = "\n";
 	RS = "<TRANSACCAO>";
 	r = 0;
@@ -17,9 +17,12 @@ BEGIN {
 	dados["MATRICULA"] = tmp[2];
 }
 
-(NR > 1) {	
+(NR > 1) {
 	split($0, tmp, /[<>]/);
 	for (c = 2; tmp[c] != "/TRANSACCAO"; c += 4) {
+		if (match(tmp[c + 1], /[0-9],[0-9]/)) {
+			sub(",", ".",tmp[c+1]);
+		}
 		transacoes[r][tmp[c]] = tmp[c + 1];
 	}
 	r++;
@@ -52,8 +55,8 @@ function criaHTML(dados, transacoes) {
 	print("<p>___________________________________________________________</p>") > "index.html";
 	imprimeDadosCliente(dados, "index.html");
 	print("<p>___________________________________________________________</p>") > "index.html";
-	print ("<p><b>Total gasto no mês: </b>" valorGasto(transacoes) " € </p>") > "index.html";
-	print ("<p><b>Total gasto em parques: </b>" valorGastoParques(transacoes) " €</p>") > "index.html";
+	imprimeValorGasto(transacoes, "index.html");
+	imprimeValorGastoParques(transacoes, "index.html");
 	print("<p>___________________________________________________________</p>") > "index.html";
 	printf (fmt, "entradasDia.html", "Entradas em cada dia do mês") > "index.html";
 	print("<p></p>") > "index.html";
@@ -130,36 +133,41 @@ function imprimeLocaisSaida(transacoes, ficheiro) {
 	for (i in transacoes) {
 		saida = transacoes[i]["SAIDA"];
 		if (saida != "null") {
-			saidas[saida] = 1;
+			saidas[saida] = saida;
 		}
 	}
 	print ("<p><b>Local de saída</b></p>") > ficheiro;
-	for (i in saidas) {
-		print ("<p>" i "</p>") > ficheiro;
+	n = asort(saidas);
+	for (i = 1; i <= n; i++) {
+		print ("<p>" saidas[i] "</p>") > ficheiro;
 	}
 }
 
-function valorGasto(transacoes) {
+function imprimeValorGasto(transacoes, ficheiro) {
 	valor = 0;
+	iva2 = 0;
 	for (i in transacoes) {
-		preco = transacoes[i]["IMPORTANCIA"] + 0.0;
-		desconto = transacoes[i]["VALOR_DESCONTO"] + 0.0;
+		preco = transacoes[i]["IMPORTANCIA"];
+		desconto = transacoes[i]["VALOR_DESCONTO"];
 		iva = (transacoes[i]["TAXA_IVA"] / 100) + 1;
-		valor += (preco - desconto) * iva;;
+		iva2 += preco * (iva - 1);
+		valor += (preco - desconto) * iva;
 	}
-	return valor;
+	printf ("<p><b>Total gasto no mês: </b> %0.2f € c/IVA &emsp;&emsp; (Valor de IVA: %0.2f €)</p>", valor, iva2) > ficheiro;
 }
 
-function valorGastoParques(transacoes) {
+function imprimeValorGastoParques(transacoes, ficheiro) {
 	valor = 0;
+	iva2 = 0;
 	for (i in transacoes) {
 		tipo = transacoes[i]["TIPO"];
 		if (tipo ~ /[Pp]arque/) {
 			preco = transacoes[i]["IMPORTANCIA"];
-			desconto = transacoes[i]["VALOR_DESCONTO"] + 0.0;
+			desconto = transacoes[i]["VALOR_DESCONTO"];
 			iva = (transacoes[i]["TAXA_IVA"] / 100) + 1;
-			valor = (preco - desconto) * iva;
+			iva2 += preco * (iva - 1);
+			valor += (preco - desconto) * iva;
 		}
 	}
-	return valor;
+	printf ("<p><b>Total gasto em parques: </b> %0.2f € c/IVA &emsp;&emsp; (Valor de IVA: %0.2f €)</p>", valor, iva2) > ficheiro;
 }
