@@ -7,7 +7,8 @@ BEGIN {
 }
 
 $1 ~ /[Ss]inger/ {
-	gsub(/^\?/, "Desconhecido", $2)
+	gsub(/^\?/, "Desconhecido", $2);
+	gsub(/&/, "e", $2);
 	for (i = 2; i <= NF; i++) {
 		singers[$i] = $i;
 	}

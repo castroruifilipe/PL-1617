@@ -24,9 +24,6 @@ $0 ~ /[0-9],[0-9]/ {
 (NR > 1) {
 	split($0, tmp, /[<>]/);
 	for (c = 2; tmp[c] != "/TRANSACCAO"; c += 4) {
-		#if (match(tmp[c + 1], /[0-9],[0-9]/)) {
-		#	sub(",", ".",tmp[c+1]);
-		#}
 		transacoes[r][tmp[c]] = tmp[c + 1];
 	}
 	r++;
