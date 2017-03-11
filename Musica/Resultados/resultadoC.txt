@@ -1,0 +1,1037 @@
+awk -f ./Musica/musC.awk ./Musica/musica/*
+Enapá2000 - 
+      És cruel,
+      Marilu,
+      Menina azul (surf).
+ - 
+      E alegre se fez triste,
+      Canção com lágrimas,
+      Canção da fronteira,
+      Canção terceira,
+      Cantar de emigração (este parte, aquele parte),
+      Erguem-se muros,
+      As mãos,
+      Menina dos olhos tristes,
+      Pensamento,
+      Porque,
+      Emigração (Quando no silêncio das noites de luar),
+      Tejo que levas as águas,
+      Trova do vento que passa,
+      O cantor de serviço,
+      Fim do Mundo (e ao cabo do teu ser),
+      Há dias em que mais vale...,
+      Loucos de Lisboa,
+      A Menina e os valetes,
+      O troca pingas,
+      A história do Zé Passarinho,
+      Canção tão simples (Quem poderá domar ...),
+      Libertação,
+      Gaivota,
+      Com que voz,
+      Madrugada de Alfama,
+      Fado português,
+      Maria Lisboa,
+      Eu quero amar, amar perdidamente,
+      Amêndoa Amarga,
+      Barco negro,
+      Uma casa portuguesa,
+      Dura Memória,
+      Fado do Ciúme,
+      Fado Xuxu,
+      Grito,
+      Havemos de ir a Viana,
+      Nem às paredes confesso,
+      Povo que lavas no rio,
+      Prece,
+      Medo (Quem dorme à noite comigo?),
+      Raízes,
+      O menino negro não entrou na roda,
+      Caixinhas,
+      Cavalo de várias cores,
+      Roda da senhora rainha,
+      Soldadim Catrapim,
+      Desfolhada,
+      Meu amor, meu amor,
+      Quando um Homem Quiser,
+      Tourada,
+      Ai se a Luzia,
+      Canto de amor e trabalho,
+      É ouvi-los,
+      Horas de ponta e mola,
+      Natação obrigatória,
+      A agulha e o dedal,
+      Segue o teu destino,
+      O sino da minha aldeia,
+      Vôa, Vôa,
+      Chão de estrelas,
+      João e Maria,
+      O Filho Que Eu Quero Ter,
+      Mentiras,
+      Oração,
+      Retalhos da Vida de Um Médico,
+      Fado do Campo Grande,
+      O amarelo da Carris,
+      Namorados da cidade,
+      Nova Feira da Ladra,
+      O homem das castanhas,
+      Rosa da noite,
+      Fado varina,
+      Fado dos azulejos,
+      Fado da pouca sorte,
+      Balada para uma velhinha,
+      O Cacilheiro,
+      Um homem na cidade,
+      A festa da vida,
+      O verão,
+      Ai Que Lindo Fadinho,
+      Segredo,
+      O Areias é um camelo,
+      Tô bom (estou bom),
+      Retirantes,
+      Lusitana paixão,
+      O Infante,
+      Toma toma,
+      Pimba pimba,
+      Semi tango - a saga de Luís Mendonça,
+      Fado das fogueiras,
+      Menina e moça,
+      Capa negra, rosa negra,
+      Coimbra é uma lição,
+      Fado de Santa Cruz,
+      Minho encantador,
+      O fado dos passarinhos,
+      Pátria,
+      Senhor poeta,
+      Fado solitário,
+      embora os meus olhos sejam,
+      Comboio malandro,
+      Daqui desta Lisboa,
+      Dias dos Reis,
+      A flóber,
+      Não canto porque sonho,
+      Oh pastor que choras,
+      Rosie,
+      Catraia do Porto,
+      A dança dos jograis,
+      Amor popular,
+      Amores do Douro,
+      Deusa de azul,
+      Donzela,
+      Memórias de um trovador,
+      Menino do mar,
+      Perdi meu amor no mar,
+      Rabelo,
+      Dedicatória,
+      Fala do Velho do Restelo ao astronauta,
+      Lágrima de preta,
+      Livre (não há machado que corte),
+      Menina bexigosa,
+      Pedra filosofal,
+      Pedro Só,
+      Pequenos deuses caseiros,
+      Agora que eu vou cantar,
+      Chula gaiteira,
+      Trângulo mângulo,
+      Para fazer uma canção de Natal,
+      Pedido de casamento,
+      É tão bom não ter juízo!,
+      O gata Philidor,
+      História de gatos,
+      Hoje é dia de Natal,
+      A lâmpada,
+      O meu lugar favorito,
+      O copo gago,
+      Calçada de Carriche,
+      Desencontro,
+      Estrela da Manhã,
+      Poema do fecho éclair,
+      Mãezinha,
+      Poema da malta das naus,
+      Poema da pedra lioz,
+      Tempo de Poesia,
+      Vidro Côncavo,
+      Ao soldado desconhecido,
+      Bellevue,
+      Motor,
+      Pronúnicia do Norte,
+      Pós modernos,
+      O paciente,
+      Dá fundo,
+      Cerimónias,
+      Efectivamente,
+      Nova gente,
+      Choque frontal,
+      To miss,
+      Morte ao sol,
+      Valsa dos detectives,
+      Impressões digitais,
+      1991,
+      (Um chamado) Desejo eléctrico,
+      Jardim d'Alá-Walkin',
+      Dama ou tigre,
+      Falha humana,
+      Os afectos,
+      Barca Dos Amantes,
+      O charlatão,
+      Definição do Amor,
+      Embalo,
+      D. Felizmina e sua loja,
+      A mesa,
+      Namoro,
+      Carta do marinheiro Pires,
+      Canção dos abraços,
+      Cantiga da velha mãe e dos seus dois filhos - Mãe coragem,
+      Um tempo que passou,
+      Jardins proibidos,
+      Fado da sina,
+      A Internacional,
+      Vão dar banhó cão,
+      S. Simão,
+      Suborno passional,
+      Samba de uma nota só,
+      Em Coimbra serei tua,
+      Acordai,
+      Canção de embalar bonequinhas pobres,
+      Pastor,
+      Estou na Lua,
+      Guitarra,
+      Milagre,
+      O Tejo,
+      Alfama,
+      Os senhores da guerra,
+      As cores do sol,
+      Vem,
+      O ladrão,
+      O Menino,
+      A andorinha da primavera,
+      O Pastor,
+      A praia do mar,
+      Balada de un Soldado,
+      O menino da sua mãe,
+      Cantiga do fogo e da guerra,
+      Casa comigo Marta,
+      Eh! Companheiro,
+      Cantiga para pedir dois tostões,
+      Le déserteur,
+      Quando eu for grande (carta aos meus netos),
+      Queixa das almas jovens censuradas,
+      Sant'Antoninho,
+      Amor, I love you,
+      O que me importa,
+      Fado d'Anto,
+      A toque de caixa,
+      O Gay do Liceu,
+      Garras dos sentidos,
+      Não me chamem pelo nome,
+      O vento mudou,
+      Senta-te aí,
+      Lanterna dos afogados,
+      E depois do Adeus,
+      Fadinho do bacalhau,
+      Três galinhas a cantar,
+      A Portuguesa (hino nacional português),
+      A Ana quer,
+      Raúl tinha um Ioio,
+      Pensar de pernas para ar,
+      As bruxas,
+      Vivam os pés,
+      Receita para fazer um herói,
+      Cinco estradas,
+      Feiticeira,
+      Libre,
+      Quem disse,
+      Chave dos sonhos,
+      E foi Dezembro,
+      Fizeram os dias assim,
+      Namoro II,
+      Não sou o único,
+      Nasce selvagem,
+      O sobrescrito,
+      O dia do nó,
+      Dia de passeio,
+      Lisnave,
+      Ponte do Guadiana,
+      O caçador da Adiça,
+      Fui às sortes e safei-me,
+      A origem do mal,
+      Arménio (o trolha da Areosa),
+      Baile da paróquia,
+      Bairro do oriente,
+      Beirã,
+      Do meu vagar,
+      Jura,
+      Lado lunar,
+      Fado do ladrão enamorado,
+      Lagos de cristais,
+      Não há estrelas no céu,
+      O prometido é devido,
+      O que eu quero ser quando for grande,
+      Paixão (anel de rubi ... Rivoli),
+      Porto Côvo,
+      Porto sentido,
+      Sei de uma camponesa,
+      Fala do Homem nascido,
+      Poema da Pedra Lioz,
+      A fisga,
+      Postal dos correios (querida mãe, querido pai, ...),
+      Tenho fome,
+      Menina,
+      Uma flor de verde pinho,
+      125 azul,
+      Fim (Quando eu morrer),
+      Memórias de um beijo (Lembras-me uma marcha de Lisboa),
+      Peter's,
+      Aerograma (Põe o meu retrato...),
+      Ser Poeta (Perdidamente),
+      Timor,
+      Travessa do poço dos negros,
+      A moda das tranças pretas,
+      Procissão,
+      Samba da Benção,
+      Felicidade,
+      Garota de Ipanema,
+      Apelo (Meu amor não vás embora),
+      Tarde Em Itapuã,
+      Berimbau (Quem é homem de bem),
+      A rosa de Hiroxima,
+      Valsinha,
+      Bolero do coronel sensível que fez amor em Monsanto,
+      Em 25 de Março,
+      Fado Pessoa,
+      Canção para a minha filha Isabel adormecer quando tiver medo do escuro,
+      Rua do Quelhas (homenagem a Florbela Espanca),
+      Na casa das sobrinhas solitárias,
+      Valsa dos sem isqueiro,
+      Longa se torna a espera,
+      Dados viciados,
+      Não sou Jesus,
+      Dá um mergulho,
+      Manhã submersa,
+      Um jogador,
+      Homem do leme,
+      Achégate a mim, Maruxa,
+      Endechas a Bárbara escrava (aquela cativa),
+      Bailia,
+      Comboio Descendente,
+      Ronda das mafarricas,
+      No vale de Fuenteovejuna,
+      Oh Coimbra do Mondego,
+      Qualquer Dia,
+      Epígrafe para a arte de Furtar (roubam-me Deus),
+      Tu gitana,
+      Verdes são os campos.
+popular ? - 
+      No alto da montanha.
+Jorge Palma - 
+      O bairro do amor,
+      Balada dum estranho,
+      Boletim Meteorológico,
+      Dá-me lume,
+      Deixa-me rir,
+      Estrela do Mar,
+      O lado errado da noite.
+José João Melo - 
+      Blues on de road to Porto,
+      O rei dos matraquilhos.
+Alfredo Duarte; Amália Rodrigues - 
+      Estranha forma de vida.
+José Barata Moura - 
+      Com a prenda do padrinho,
+      Joana come a papa,
+      Fungágá da bicharada,
+      Olha a bola Manel,
+      Resolveram fazer esta canção,
+      Madalena.
+Sétima Legião (?) - 
+      Navegar,
+      Por quem não esqueci.
+João Aguarela - 
+      A cabana do Pai Tomás.
+Joaquim de Almeida; Luís Represas - 
+      Enquanto.
+Carlos Guerreiro - 
+      Era não era do tamanho de um pardal.
+Biafra - 
+      Sonho de Ícaro.
+Ary Barroso - 
+      Aquarela do Brasil,
+      Folha morta.
+Carlos Lira - 
+      Feio, não é bonito.
+José Galhardo; Raul Ferrão - 
+      Coimbra.
+Tozé Brito - 
+      Olá, tu por aqui (?).
+Pino Danielle ; Nelson Motta - 
+      Bem que se quis.
+Paulo Gonzo - 
+      Leve beijo triste.
+Vicente Paiva - 
+      Olhos verdes.
+Manno Goés ; Tuca Fernandes - 
+      Milla.
+Chico Buarque;Ruy Guerra - 
+      Não existe pecado ao sul do equador.
+José Mário Branco (?) - 
+      Onde vais ó caminheiro.
+Milton Nascimento - 
+      Amigo,
+      Paula e Bebeto,
+      Canção Amiga,
+      Canção da América,
+      Coração de Estudante,
+      Nos bailes da vida,
+      Paisagem da janela,
+      O rouxinol,
+      San Vicente.
+Tom Jobim - 
+      Águas de Março,
+      Wave (Vou te contar).
+Sérgio Godinho - 
+      2º andar direito,
+      Quatro quadras soltas,
+      As Armas do Amor,
+      Aguenta aí,
+      Alice No País Dos Matraquilhos,
+      Aos Amores!,
+      Arranja-me um emprego,
+      Balada Da Rita,
+      Barnabé,
+      A carroça dos poetas,
+      Cuidado com as imitações (Casimiro),
+      As certezas do meu mais brilhante amor,
+      Com um brilhozinho nos olhos,
+      Correio azul,
+      A Democracia ,
+      Os Demónios de Alcácer Quibir,
+      Dias úteis,
+      Emboscadas,
+      Espalhem a notícia,
+      Eu contigo,
+      Fado gago,
+      Farto de voar,
+      Horas extraordinárias,
+      Isto anda tudo ligado,
+      Lisboa Que Amanhece,
+      Maré alta,
+      A minha cachopa,
+      Na vida real,
+      Não me beijes por engano,
+      Não respire,
+      Não vás contar que mudei a fechadura,
+      A noite passada,
+      Ouro Preto,
+      Parto sem dor,
+      Paula,
+      Assim como um postal para o Canadá,
+      Assim como um postal para o Canadá (2),
+      O primeiro dia,
+      Que força é essa,
+      A-A-E-I-O,
+      Descansa a cabeça (Estalajadeira),
+      Que bom que é,
+      Senhor marquês,
+      A linda Joana,
+      Romance de um dia na estrada,
+      Talvez que sonhando,
+      Tem ratos,
+      É terça-feira.
+Mafalda Veiga - 
+      Charco,
+      Em toda a parte,
+      Fragilidade,
+      Nós,
+      Prisão,
+      Restolho.
+Moraes Moreira ; Abel Silva - 
+      Festa do interior.
+João Bosco; Aldir Blanc - 
+      Dois pra lá, dois pra cá.
+Erasmo Carlos - 
+      Carta.
+Zé Ketti - 
+      Opinião,
+      Nega Dina.
+José Cid - 
+      Um grande, grande amor,
+      Se eu te pudesse abraçar.
+José Luís Tinoco - 
+      Madrugada.
+João Donato; Abel Silva - 
+      Verbos do amor.
+Manuel Freire - 
+      Ei-los que partem.
+Fausto; A. P. Braga - 
+      O homem e a burla,
+      P'ró que der e vier.
+Celso Fonseca; Ronaldo Bastos - 
+      Sorte.
+Vitorino - 
+      Contos do príncipe Real,
+      Os homens do largo,
+      Queda do Império (perguntei ao vento).
+Mário Alves - 
+      Moçoila (Toada),
+      Subir subir.
+Desconhecido - 
+      Júlia Florista,
+      Olha o rio que vai correndo,
+      Não sei se mereço,
+      De 2.ª a 6.ª Feira,
+      Filhos da Nação,
+      Modinha,
+      À meia noite ao luar,
+      A minha capa rasgada,
+      Adeus Sé velha,
+      Ao cair da tarde,
+      Ao morrer os olhos dizem,
+      Balada da despedida,
+      Balada da despedida (2),
+      Balada do Mondego,
+      Coimbra,
+      Coimbra menina e moça,
+      Esmeralda verde,
+      Feiticeira,
+      O meu desejo,
+      O meu menino,
+      O sol anda lá no céu,
+      Os teus olhos são tão verdes,
+      Torre de Santa Cruz,
+      Vira de Coimbra,
+      Protesto,
+      Chuva de Prata,
+      Lua-de-Mel (Como o Diabo Gosta),
+      Me Faz Bem,
+      Cais,
+      Vídeo Maria,
+      Quase tudo,
+      Era uma vez um cuco que não gostava de couves,
+      O cuco,
+      O indiozinho,
+      O porquinho,
+      Neve,
+      Da cor do pecado,
+      Não voltarei a ser fiel,
+      A lua nasceu,
+      Mestre de culinária,
+      O anzol,
+      Um caso mais.
+A. Amargo; A. Duarte - 
+      Há festa na Mouraria.
+Aníbal Nazaré; João Nobre - 
+      Não venhas tarde.
+Sebastião Nunes; José Garcia; José Gomes Filho - 
+      Lágrima.
+João Afonso - 
+      Eu não sei que faz o sol,
+      Carteiro em bicicleta.
+Geraldo Pereira;Nelson Trigueiro - 
+      Sem compromisso.
+João Ferreira Rosa - 
+      Embuçado.
+Nelson Cavaquinho; Augusto Tomaz Jr. - 
+      Cuidado Com A Outra.
+Sérgio Ricardo - 
+      Zelão.
+Humberto Teixeira ; Luíz Gonzaga - 
+      Asa branca.
+C.Sigman ; B.Russel - 
+      Louca me chamam ( Crazy He Call's Me ).
+Mamonas Assassinas - 
+      Pelados em Santos,
+      RoboCop Gay,
+      Sabão crá-crá,
+      Vira, vira.
+Rodrigo(?) - 
+      O cais do Sodré.
+Dalla Pallotino - 
+      Minha história (Menino Jesus).
+Carlos Paião - 
+      Beijinho,
+      Capuchinho,
+      Cinderela,
+      Pó-de-arroz.
+Alves Coelho - 
+      Olhos Castanhos.
+Zeca Afonso - 
+      No lago do Breu,
+      A Morte saiu à rua,
+      Alegria da Criação,
+      Altos castelos,
+      Avenida de Angola,
+      Balada do Outono,
+      Só ouve o brado da terra,
+      Canção de embalar,
+      Cantiga do monte,
+      Canto moço,
+      O cavaleiro e o anjo,
+      Chamaram-me cigano,
+      Coro dos Caídos,
+      Cantigas do Maio (eu fui ver a minha amada),
+      Eu vou ser como a toupeira,
+      A formiga no carreiro,
+      Gastão era perfeito,
+      Grândola Vila Morena,
+      O homem da gaita,
+      Já o tempo se habitua,
+      Menino de oiro,
+      A mulher da erva,
+      Natal dos simples,
+      Nefretite não tinha papeira,
+      Por Aquele Caminho,
+      Por trás daquela janela,
+      Que amor não me engana,
+      Rainha,
+      Se voaras mais ao perto,
+      As sete mulheres do Minho,
+      Teresa Torga,
+      Traz outro amigo também,
+      Utopia,
+      Vai, Maria vai,
+      Vampiros,
+      Vejam bem.
+Gabriel o Pensador - 
+      2345meia78!!,
+      Cachimbo da PAZ!!!,
+      Festa da Música,
+      + 1 dose.
+João Bosco;Aldir Blanc - 
+      Angra.
+Iris - 
+      Oh mãe, aquele moço bateu-me.
+Maria Guinot - 
+      Silêncio e tanta gente.
+popular	 - 
+      Chula.
+Edmundo Bettencourt (?) - 
+      Samaritana,
+      Saudades de Coimbra.
+António Mafra - 
+      Arrebita,
+      Sete e Pico.
+Renato Teixeira - 
+      Romaria.
+Rui Monteiro - 
+      Os meninos de Huambo.
+Luiz Gonzaga; Zé Dantas - 
+      O xote das meninas.
+A. P. Braga - 
+      Canção para desfazer equívocos.
+Gwen; John D.Loudermilk; Erasmo Carlos - 
+      O calhambeque (Road Hog).
+Luís Represas - 
+      A hora do lobo,
+      Aqui não me parece,
+      Ao fim ao cabo,
+      Assalto (ao beijo armado),
+      A veza mais próxima do fim,
+      Benção de ser homem,
+      Do fundo do tempo,
+      Em frente do sol,
+      Enquanto dormes,
+      Guaguancó y fado,
+      Imortais,
+      Às vezes,
+      Neva sobre a marginal,
+      No escuro,
+      O que vai ser,
+      Olhos,
+      Para sempre,
+      Proscritos,
+      Ausência e tu,
+      Ao canto da noite,
+      Com um desejo só,
+      Falei demais,
+      Foi como foi,
+      Fora de tempo,
+      Não me atrevo,
+      O melhor de mim,
+      Por cima da vida,
+      Quando me perco,
+      Sombras,
+      A última festa.
+Beto Guedes; Ronaldo Bastos - 
+      Amor de índio.
+João do Vale ; José Cândido - 
+      Carcará.
+Miguel Castro - 
+      Canguru.
+Pedro Barroso - 
+      Cantar brejeiro,
+      Cantar é,
+      Menina dos olhos de água,
+      Pão de pedras.
+Zé Ramalho - 
+      Frevo mulher.
+Paulo Martins - 
+      Bastava uma palavra para dizer.
+Manuel de Novas - 
+      Tudo tem se limite.
+Gilberto Gil ;Chico Buarque - 
+      Cálice.
+Amadeu do Vale; Frederico Valério - 
+      Ai, Mouraria.
+Caetano Veloso - 
+      A luz de Tieta,
+      Alegria, Alegria,
+      Baby,
+      Eclipse Oculto,
+      Força Estranha,
+      Irene,
+      Lua de São Jorge,
+      Luz do Sol,
+      Meu Bem, Meu Mal,
+      Não Identificado,
+      O Leãozinho,
+      O Quereres,
+      Onde o Rio é mais baiano,
+      Partido Alto,
+      Podres Poderes,
+      Qualquer Coisa,
+      Rapte-me, Camaleoa,
+      Sampa,
+      Tigresa,
+      Trilhos Urbanos,
+      Um Índio,
+      Vaca Profana,
+      Você Não Entende Nada,
+      Os Argonautas,
+      Avarando,
+      Lealdade,
+      Coração Vagabundo,
+      Luz do Sol,
+      London London,
+      Dom de iludir,
+      Meu bem meu mal,
+      Baby.
+Roberto Carlos; Erasmo Carlos - 
+      Olha,
+      Sua Estupidez.
+Djavan - 
+      Oceano,
+      Azul.
+Chico Buarque - 
+      Amando sobre os jornais,
+      Bom conselho,
+      Construção,
+      A voz do dono e o dono da voz,
+      Geni e o zepelim,
+      O que será quer será,
+      Quotidiano (cotidiano),
+      Tanto mar,
+      Tanto mar II,
+      Teresinha,
+      Folhetim,
+      Pedro pedreiro.
+Ricardo Pavão - 
+      Rejeição.
+Francisco Ribeiro - 
+      As cidades e os campos,
+      Pregão.
+Aníbal Nazaré; Nelson de Barros - 
+      Fado falado.
+Luís Represas; Cristina Represas - 
+      Linha da frente.
+Paulo de Carvalho - 
+      Recado para o Chico.
+anónimo - 
+      Puestos entan frente a frente.
+Edu Lôbo ; Ruy Guerra - 
+      Canção da terra.
+Dorival Caymmi - 
+      Só Louco.
+Lupicínio Rodrigues - 
+      Felicidade.
+Luiza da Gama Santos - 
+      Bola colorida.
+Miguel Ângelo; Fernando Cunha - 
+      Ao passar um navio,
+      Aquele Inverno,
+      Marcha dos desalinhados,
+      Sou como um rio.
+Ivan Lins ; Vitor Martins - 
+      Madalena.
+João Donato ; Lysias Enio - 
+      Até quem sabe.
+Edu Lôbo ; Oduvaldo Viana Filho - 
+      Chegança.
+GNR(?) - 
+      Dunas.
+Ermelinda Duarte - 
+      Somos livres (uma gaivota voava voava).
+Fernando Santos; Carlos Dias - 
+      Lisboa à noite.
+David Nasser ; Alcir Pires Vermelho - 
+      Canta Brasil.
+Noel Rosa - 
+      Filosofia.
+José Galhardo; Amadeu do Vale; Raul Portela - 
+      Lisboa antiga (Olhai, senhores ...).
+Carlos Lyra - 
+      Maria Ninguém.
+Frederico de Brito - 
+      Canoas do Tejo.
+Arnaldo Antunes ; Arto Lindsay - 
+      Beija Eu.
+popular (?) - 
+      Lá vai o comboio,
+      Uma sardinha,
+      Natal africano.
+Arlindo Duarte Carvalho - 
+      Chapéu preto.
+Miguel Gameiro - 
+      Pura Inocência.
+João Cabral de Melo Neto ; Chico Buarque - 
+      Funeral do lavrador.
+Ângelo Araújo - 
+      Contos Velhinhos.
+Pedro Abrunhosa; Bandemónio - 
+      Tudo o que eu te dou.
+Gabriel de Oliveira; Alcídia Rodrigues - 
+      Embuçado.
+Carlos Mendes - 
+      Amélia dos Olhos Doces.
+Raul Marques - 
+      Tu és (a estrela do meu sonho).
+Carlos Canelhas - 
+      Ele e Ela.
+Zé Ketti ; H.B. de Carvalho - 
+      Cicatriz.
+Alberto Janes - 
+      Dar de beber à dor.
+Pedro Pereira; Paulo Vilares - 
+      Rap'ó Taxo.
+Renato Russo - 
+      Tempo Perdido.
+Sebastião Antunes - 
+      História da minhota,
+      Não há dinheiro.
+Tom Jobim;  Newton Mendonça - 
+      Desafinado.
+Fausto - 
+      Mariana das sete saias,
+      À deriva Porto Rico,
+      A tua presença,
+      Ao longo de um claro rio de água doce,
+      Atrás dos tempos,
+      O barco vai de saída,
+      A chusma salva-se assim,
+      Coça barriga,
+      Como um sonho acordado,
+      Foi por ela,
+      A ilha,
+      O mar,
+      Por este rio acima,
+      Porque não me vês,
+      Se tu fores ver o mar (Rosalinda),
+      Não sou o vosso rei,
+      Eu tenho um fraquinho por ti,
+      Uma cantiga de desemprego.
+popular(?) - 
+      Noite feliz.
+António Luís Melo; João Bastos - 
+      Cantiga da rua.
+José Mário Branco - 
+      As canseiras desta vida,
+      Capotes brancos, capotes negros,
+      Fado da tristeza,
+      Tiro-no-liro,
+      Eu vim de longe.
+Caetano Veloso; Ney Costa Santos; Vladimir Maiakovski - 
+      O amor.
+Henricão ;Rubens Campos - 
+      Marambaia.
+Vinicius de Moraes ; Carlos Lira - 
+      Pau de arara.
+J.A. Flores; M.O. Guerreiro - 
+      Índia.
+Edmundo Souto;Paulinho Tapajós;Danilo Caymmi - 
+      Andança.
+Pedro Ayres Magalhães - 
+      Céu da Mouraria,
+      Ainda,
+      Destino,
+      Silêncio,
+      O mar,
+      Sentimento,
+      Culpa,
+      Amargura,
+      Ao longe o mar,
+      Ajuda,
+      Haja o que houver,
+      O paraíso,
+      A vaca de fogo,
+      Sonho azul.
+Geraldo Vandré - 
+      Pra não dizer que não falei das flores.
+Belchior;Tuca - 
+      Sensual.
+Norberto Araújo - 
+      Não é desgraça ser pobre.
+Gilberto Gil - 
+      Fé menino.
+Elsa Cunha Rosa - 
+      A chuva.
+Ignez Mazoni - 
+      A linda maça reineta.
+Carlos Dias; César de Oliveira - 
+      Cheira a Lisboa.
+Chico Buarque; Ruy Guerra - 
+      Fado tropical.
+Rita Lee ;Roberto  Carvalho - 
+      Alô, alô marciano.
+Sétima Legião - 
+      Flor de Maio (?),
+      Sete mares,
+      Noutro lugar,
+      Saudades,
+      Além-Tejo,
+      A reconquista,
+      Os limites do mar,
+      Senhora das rosas.
+Artur Ribeiro - 
+      A Rosinha dos limões.
+Mauro Kwitko - 
+      Mal necessário.
+Rui Baptista - 
+      o meu avião.
+Lucinha - 
+      Bandolero.
+Vinicius de Moraes - 
+      Casa,
+      Pato,
+      Pela luz dos olhos teus,
+      Samba em prelúdio,
+      Valsa do bordel.
+Alexandre - 
+      Serei uma sombra a voar.
+Neca Rafael(?) - 
+      Já estás c'os copos.
+Vieira da Silva - 
+      Canção de mágoa,
+      canção para um povo triste,
+      Onde estás ó liberdade?.
+José João Melo; Ricardão - 
+      No cume da serra.
+Fernando Rolim - 
+      Ondas do mar.
+Pedro Abrunhosa - 
+      Se eu fosse um dia o teu olhar,
+      Será,
+      Socorro,
+      Viagens.
+popular - 
+      Lira,
+      Os bravos,
+      alecrim,
+      Entrudo,
+      Ó menino ó,
+      Cantiga da Roda,
+      Lenga, lenga,
+      Romance Da Lhoba (romance da loba),
+      Vem cantar à roda,
+      Anda duermete niño,
+      Marião,
+      A caminho de Viseu,
+      A praia,
+      Alta vai a lua,
+      Ó minha amora madura,
+      Ao passar a ribeirinha,
+      Ao romper da bela aurora,
+      As armas do meu adufe,
+      Bailinho da Madeira,
+      Bela aurora,
+      Canção da vindima,
+      Cerigoça,
+      Chamarrita,
+      A senhora Chamarrita,
+      Charamba,
+      Chin-glin-din,
+      Casei-me cun pastori,
+      Entrai pastores,
+      Foi na noite de Natal,
+      Fui-te ver estavas lavando,
+      Gota da Meadela,
+      Iscote,
+      O ladrão,
+      Este linho é mourisco,
+      A machadinha,
+      Malhão,
+      Malhão Traçado,
+      O menino está dormindo,
+      Manuel cuco,
+      A minha saia velhinha,
+      moleirinha,
+      Não olhes pra mim não olhes,
+      No alto daquela serra,
+      Ó rosa, arredonda a saia,
+      Senhor da Serra,
+      Oh oh meu menino,
+      Olhei para o céu,
+      Olhos pretos,
+      Oliveira da serra,
+      Pezinho da vila,
+      Pézinho do pico,
+      A plaina,
+      Por riba se ceifa o pão,
+      O que manto de tristeza,
+      Rama,
+      Real Caninha,
+      Cantar dos Reis (Donões, Montalegre),
+      Resineiro engraçado,
+      Ribeira vai cheia,
+      Rosinha,
+      Rouxinol repica o canti,
+      Rusga,
+      San Macaio,
+      Oh meu S. Bentinho,
+      Sapateia,
+      Senhor da Serra,
+      A Senhora D'Aires,
+      Siga a rusga,
+      O sol perguntou à lua,
+      Tia Anica de Loulé,
+      Tirana,
+      Tirana de S. Cosme,
+      Verde Gaio,
+      Canário,
+      Oh que janela tão alta,
+      Delicada da cintura,
+      Diz a laranja ao limão,
+      Eu hei-de amar uma pedra,
+      Laurinda,
+      Menina estás à janela,
+      Ó patrão dê-me um cigarro,
+      Porque não me vês Joana,
+      Vou-me embora vou partir,
+      Entrudo,
+      Maria Faia,
+      Milho verde.
+Fernando Tordo - 
+      Adeus tristeza,
+      Fevereiro,
+      O bem aparecido,
+      Só o passado é que não,
+      Sou de outras coisas.
+Augusto Hilário - 
+      Fado Hilário.
+João do Vale ; J.B. de Aquino - 
+      Sina do caboclo.
+António Variações - 
+      Todos nós temos Amália na voz,
+      Canção do engate,
+      Deolinda de Jesus.
+Luís Goes (?) - 
+      Como uma ave ou um rio.
+Walter Franco - 
+      Me Deixe Mudo.
+Tom Jobim; Dolores Duran - 
+      Estrada de sol.
+António Macedo - 
+      Canta, canta amigo canta.
+Luyz Mylan - 
+      Sospirastes Baldovinos.
+Raul Portela; G. Chianca; A. Curto - 
+      Aldeia da roupa branca.
+Duo Ouro-Negro (?) - 
+      Amanhã.

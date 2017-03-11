@@ -1,0 +1,131 @@
+awk -f ./Musica/musA.awk ./Musica/musica/*
+A. P. Braga
+Adriana Calcanhoto
+Adriano Correia de Oliveira
+Adriano Correia de Oliveira (?)
+Ala dos Namorados
+Alberto Ribeiro
+Alcoolémia
+Alma Lusa
+Amália Rodrigues
+António Calvário
+António Menano
+António Variações
+Banda do Casaco
+Bandemónio
+Bando dos Gambozinos
+Beatriz Costa
+Beatriz Costa (?)
+Boris Vian
+Brigada Vitor Jara
+Brigada Vitor Jara (?)
+Caetano Veloso
+Carlos Mendes
+Carlos Paião
+Carlos do Carmo
+Cebola Mol
+Cesária Évora
+Chico Buarque
+Conjunto António Mafra
+Delfins
+Desconhecido
+Despe e Siga
+Duarte Mendes
+Dulce Pontes
+Duo Ouro-Negro
+Edmundo Bettencourt
+Eduardo Nascimento
+Elis Regina
+Emanuel
+Enapá2000
+Fausto
+Fernando Tordo
+Filipa Pais
+Francisco Fanhais
+Francisco José
+Frei Fado d'El Rei
+Fúria do Açúcar
+GNR
+Gaiteiros de Lisboa
+Gal Costa
+Helena Vieira
+Herman José (?)
+Hermínia Silva
+Ira!
+Iris
+Isabel Silvestre
+Janita Salomé
+Jorge Palma
+José Barata Moura
+José Mário Branco
+João Afonso
+João Gilberto
+João Villaret
+Kátia Guerreiro
+Legião Urbana
+Lia Gama
+Lua Extravagante
+Lunáticos
+Luís Cília
+Luís Goes
+Luís Represas
+Madalena Iglésias
+Madredeus
+Mafalda Veiga
+Manuel Freire
+Maria Bethânia
+Maria Creuza
+Maria Guinot
+Marisa Monte
+Meninos d'Avó
+Milton Nascimento
+Minidrunfes
+Mísia
+Neca Rafael
+Netinho
+Ney Matogrosso
+Né Ladeiras
+Nílton Nascimento
+Paralamas do Sucesso
+Paulo Gonzo
+Paulo de Carvalho
+Pedro Abrunhosa
+Porquinhos da Ilda
+Pólo Norte
+Quadrilha
+Quim Barreiros
+Quim Tonho(?)
+Quinta do Bill
+Raul Marques e os Amigos da Salsa
+Resistência
+Rio Grande
+Roberto Carlos
+Rodrigo
+Rui Veloso
+Rádio Macau
+Samuel
+Santos e Pecadores
+Secos e Molhados
+Serge Reggiani
+Sexto Sentido
+Simone de Oliveira
+Sitiados
+Sérgio Godinho
+Sétima Legião
+Taitibitileus
+Tereza Silva Carvalho
+Tim
+Tom Jobim
+Tonicha
+Tozé Brito
+Trovante
+Vicente da Câmara
+Vinicius de Moraes
+Vitorino
+Vitorino (?)
+Vozes da Rádio
+Xutos & Pontapés
+Xutos e Pontapés
+Zeca Afonso
+Zélia Barbosa
+Total de cantores: 129

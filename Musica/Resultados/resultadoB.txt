@@ -1,0 +1,156 @@
+awk -f ./Musica/musB.awk ./Musica/musica/*
+Enapá2000 - 3
+Edmundo Souto, Paulinho Tapajós, Danilo Caymmi - 1
+Tom Jobim, Newton Mendonça - 1
+Jorge Palma - 7
+José João Melo - 2
+José Barata Moura - 6
+Sétima Legião (?) - 2
+João Aguarela - 1
+Aníbal Nazaré, Nelson de Barros - 1
+José Galhardo, Raul Ferrão - 1
+Carlos Guerreiro - 1
+Biafra - 1
+Ary Barroso - 2
+Amadeu do Vale, Frederico Valério - 1
+Carlos Lira - 1
+Tozé Brito - 1
+Paulo Gonzo - 1
+Vicente Paiva - 1
+Vinicius de Moraes, Carlos Lira - 1
+José Mário Branco (?) - 1
+Milton Nascimento - 9
+Tom Jobim - 2
+Sérgio Godinho - 48
+Mafalda Veiga - 6
+Miguel Ângelo, Fernando Cunha - 4
+A. Amargo, A. Duarte - 1
+Fernando Santos, Carlos Dias - 1
+Tom Jobim, Dolores Duran - 1
+Erasmo Carlos - 1
+Zé Ketti - 2
+Belchior, Tuca - 1
+Henricão, Rubens Campos - 1
+José Cid - 2
+José Luís Tinoco - 1
+Edu Lôbo, Oduvaldo Viana Filho - 1
+Luís Represas, Cristina Represas - 1
+Manuel Freire - 1
+Popular - 92
+Pedro Abrunhosa, Bandemónio - 1
+João do Vale, J.B. de Aquino - 1
+Vitorino - 3
+João Donato, Abel Silva - 1
+Mário Alves - 2
+Desconhecido - 43
+Manno Goés, Tuca Fernandes - 1
+João Afonso - 2
+João Ferreira Rosa - 1
+Sérgio Ricardo - 1
+Mamonas Assassinas - 4
+José Galhardo, Amadeu do Vale, Raul Portela - 1
+Caetano Veloso, Ney Costa Santos, Vladimir Maiakovski - 1
+Rodrigo(?) - 1
+Zé Ketti, H.B. de Carvalho - 1
+Dalla Pallotino - 1
+Carlos Paião - 4
+Gabriel de Oliveira, Alcídia Rodrigues - 1
+Alves Coelho - 1
+Zeca Afonso - 36
+Gwen, John D.Loudermilk, Erasmo Carlos - 1
+Gabriel o Pensador - 4
+Iris - 1
+Maria Guinot - 1
+Edmundo Bettencourt (?) - 2
+António Mafra - 2
+J.A. Flores, M.O. Guerreiro - 1
+João Donato, Lysias Enio - 1
+Renato Teixeira - 1
+Rui Monteiro - 1
+A. P. Braga - 1
+Luís Represas - 30
+Miguel Castro - 1
+Pedro Barroso - 4
+Zé Ramalho - 1
+Paulo Martins - 1
+Luiz Gonzaga, Zé Dantas - 1
+Manuel de Novas - 1
+Raul Portela, G. Chianca, A. Curto - 1
+Rita Lee, Roberto  Carvalho - 1
+Caetano Veloso - 32
+Carlos Dias, César de Oliveira - 1
+Moraes Moreira, Abel Silva - 1
+Djavan - 2
+Chico Buarque - 12
+Ricardo Pavão - 1
+Francisco Ribeiro - 2
+Paulo de Carvalho - 1
+Pino Danielle, Nelson Motta - 1
+Dorival Caymmi - 1
+Lupicínio Rodrigues - 1
+Luiza da Gama Santos - 1
+GNR(?) - 1
+Ermelinda Duarte - 1
+Noel Rosa - 1
+Carlos Lyra - 1
+David Nasser, Alcir Pires Vermelho - 1
+Frederico de Brito - 1
+António Luís Melo, João Bastos - 1
+Geraldo Pereira, Nelson Trigueiro - 1
+Arlindo Duarte Carvalho - 1
+Miguel Gameiro - 1
+Joaquim de Almeida, Luís Represas - 1
+Roberto Carlos, Erasmo Carlos - 2
+João Cabral de Melo Neto, Chico Buarque - 1
+João do Vale, José Cândido - 1
+Ângelo Araújo - 1
+Carlos Mendes - 1
+Raul Marques - 1
+Carlos Canelhas - 1
+João Bosco, Aldir Blanc - 2
+Alberto Janes - 1
+Renato Russo - 1
+Alfredo Duarte, Amália Rodrigues - 1
+Sebastião Antunes - 2
+Fausto, A. P. Braga - 2
+Fausto - 18
+Aníbal Nazaré, João Nobre - 1
+Chico Buarque, Ruy Guerra - 2
+Celso Fonseca, Ronaldo Bastos - 1
+José Mário Branco - 5
+Sebastião Nunes, José Garcia, José Gomes Filho - 1
+Gilberto Gil, Chico Buarque - 1
+Ivan Lins, Vitor Martins - 1
+Pedro Ayres Magalhães - 14
+Geraldo Vandré - 1
+Norberto Araújo - 1
+Gilberto Gil - 1
+Elsa Cunha Rosa - 1
+Ignez Mazoni - 1
+José João Melo, Ricardão - 1
+Pedro Pereira, Paulo Vilares - 1
+Sétima Legião - 8
+Artur Ribeiro - 1
+Mauro Kwitko - 1
+Rui Baptista - 1
+Lucinha - 1
+Vinicius de Moraes - 5
+Alexandre - 1
+Neca Rafael(?) - 1
+Edu Lôbo, Ruy Guerra - 1
+Vieira da Silva - 3
+Nelson Cavaquinho, Augusto Tomaz Jr. - 1
+Fernando Rolim - 1
+Humberto Teixeira, Luíz Gonzaga - 1
+C.Sigman, B.Russel - 1
+Pedro Abrunhosa - 4
+Fernando Tordo - 5
+Augusto Hilário - 1
+Arnaldo Antunes, Arto Lindsay - 1
+António Variações - 3
+Luís Goes (?) - 1
+Walter Franco - 1
+Beto Guedes, Ronaldo Bastos - 1
+António Macedo - 1
+Luyz Mylan - 1
+Duo Ouro-Negro (?) - 1
