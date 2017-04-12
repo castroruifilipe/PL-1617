@@ -224,6 +224,7 @@ declare
 decorate
 decrease
 dedicate
+define
 delay
 delete
 deny
@@ -475,6 +476,7 @@ integrate
 introduce
 invent
 invite
+iterate
 join
 jump
 justify
@@ -836,6 +838,7 @@ sort
 sow
 sparkle
 speak
+specify
 speed
 spell
 spend
@@ -853,7 +856,6 @@ stand
 stare
 start
 state
-
 stay
 steal
 steep
