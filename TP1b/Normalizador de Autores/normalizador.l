@@ -4,72 +4,118 @@
 %}
 
 %option noyywrap
-%x SUB
+%x LINHA COMPRESSAO
 
 %%
-    FILE * aux = fopen("aux.txt","w+");
+    FILE * nomes = fopen("nomes.txt","w+");
+    char * token;
+    char * nome[20];
+    int i=0;
 
-
-author\ *=\ *    {   
-        fprintf(aux,"author = ");
-        BEGIN SUB;
+author\ =\ \{ |
+editor\ =\ \{    {   
+        fprintf(nomes,"%s",yytext);
+        BEGIN LINHA;
 }
 
-editor\ *=\ *    {   
-        fprintf(aux,"editor = ");
-        BEGIN SUB;
+<LINHA>[a-zA-Zá-úãõÁ-ÚâêôÂÊÔç ]+\,        {
+       fprintf(nomes,"%s",yytext);
+       BEGIN COMPRESSAO; 
 }
 
-<SUB>\{\\'a\}    {   fprintf(aux,"á");   }   
-<SUB>\{\\'e\}    {   fprintf(aux,"é");   } 
-<SUB>\{\\'i\}    {   fprintf(aux,"í");   } 
-<SUB>\{\\'o\}    {   fprintf(aux,"ó");   } 
-<SUB>\{\\'u\}    {   fprintf(aux,"ú");   } 
+<LINHA>[a-zA-Zá-úãõÁ-ÚâêôÂÊÔç]+\ and\  {
+        token = strtok(yytext," ");
+        nome[i] = strdup(token);
+        fprintf(nomes,"%s,",nome[i]);
+        for(int j=0; j<i ; j++)
+        {
+            fprintf(nomes," %c.",nome[j][0]);
+        }
 
-<SUB>\{\\'A\}    {   fprintf(aux,"Á");   }   
-<SUB>\{\\'E\}    {   fprintf(aux,"É");   } 
-<SUB>\{\\'I\}    {   fprintf(aux,"Í");   } 
-<SUB>\{\\'O\}    {   fprintf(aux,"Ó");   } 
-<SUB>\{\\'U\}    {   fprintf(aux,"Ú");   } 
-
-<SUB>\{\\~a\}    {   fprintf(aux,"ã");   }   
-<SUB>\{\\~o\}    {   fprintf(aux,"õ");   } 
-
-<SUB>\{\\^a\}    {   fprintf(aux,"â");   }   
-<SUB>\{\\^e\}    {   fprintf(aux,"ê");   }  
-<SUB>\{\\^o\}    {   fprintf(aux,"ô");   }  
-
-<SUB>\{\\^A\}    {   fprintf(aux,"Â");   }   
-<SUB>\{\\^E\}    {   fprintf(aux,"Ê");   }  
-<SUB>\{\\^O\}    {   fprintf(aux,"Ô");   }  
-
-<SUB>\{\\c\{c\}\}    {   fprintf(aux,"ç");   } 
-
-<SUB>[A-Z]\.\}   {   fprintf(aux,"%s",yytext);   }
-
-<SUB>[A-Z]\.\ *  {   fprintf(aux,"%c. ",yytext[0]);  }
-
-<SUB>\},        {
-       fprintf(aux,"%s",yytext);
-       BEGIN INITIAL;
+        fprintf(nomes," and ");
+        i=0;
 }
 
-<SUB>\",        {   
-        fprintf(aux,"},");
+<LINHA>[a-zA-Zá-úãõÁ-ÚâêôÂÊÔç]+\},  {
+        token = strtok(yytext,"}");
+        nome[i] = strdup(token);
+        fprintf(nomes,"%s,",nome[i]);
+        for(int j=0; j<i ; j++)
+        {
+            fprintf(nomes," %c.",nome[j][0]);
+        }
+
+        fprintf(nomes,"},");
+        i=0;
+
         BEGIN INITIAL;
- }
+}
 
-<SUB>\"         {   fprintf(aux,"{");   }
 
-<*>.|\n         {   fprintf(aux,"%s",yytext);   }
+<LINHA>[a-zA-Zá-úãõÁ-ÚâêôÂÊÔç]+\       {
+        nome[i] = strdup(yytext);
+        i++;
+}
 
-<*>ENDFILE      {   fclose(aux);    }
+
+<COMPRESSAO>[A-Z].   {
+        fprintf(nomes,"%c.",yytext[0]);
+}
+
+<COMPRESSAO>Á[a-z]+     {
+        fprintf(nomes,"A.");
+}
+
+<COMPRESSAO>É[a-z]+     {
+        fprintf(nomes,"A.");
+}
+
+<COMPRESSAO>Í[a-z]+     {
+        fprintf(nomes,"A.");
+}
+
+<COMPRESSAO>Ó[a-z]+     {
+        fprintf(nomes,"A.");
+}
+
+<COMPRESSAO>Ú[a-z]+     {
+        fprintf(nomes,"A.");
+}
+
+<COMPRESSAO>Â[a-z]+     {
+        fprintf(nomes,"A.");
+}
+
+<COMPRESSAO>Ê[a-z]+     {
+        fprintf(nomes,"A.");
+}
+
+<COMPRESSAO>Û[a-z]+     {
+        fprintf(nomes,"A.");
+}
+
+<COMPRESSAO>[a-zA-Zá-úãõÁ-ÚâêôÂÊÔç]+   {
+        fprintf(nomes,"%c.",yytext[0]);
+}
+
+<COMPRESSAO>\ and\       {
+        fprintf(nomes,"%s",yytext);
+        BEGIN LINHA;
+}
+
+<COMPRESSAO>\},      {
+        fprintf(nomes,"%s",yytext);
+        BEGIN INITIAL;
+}
+
+<*>.|\n         {   fprintf(nomes,"%s",yytext);   }
+
+<*>ENDFILE      {   fclose(nomes);    }
 %%
 
 int main(int argc, char** argv) {
     if(argc==2)
         yyin = fopen(argv[1],"r");
     yylex();
-
     return 0;
 }

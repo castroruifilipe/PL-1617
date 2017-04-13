@@ -1,17 +1,22 @@
-all: normalizador ${FILE} processador cleans
+all: formatador ${FILE} normalizador  processador ${NOME} cleans
+
+formatador: formatador.l
+	flex formatador.l
+	gcc -g lex.yy.c -o formatador 
+	./formatador ${FILE}
 
 normalizador: normalizador.l
 	flex normalizador.l
 	gcc -g lex.yy.c -o normalizador 
-	./normalizador ${FILE}
+	./normalizador aux.txt
 
 processador: processador.l
 	flex processador.l
 	gcc -g lex.yy.c -o processador 
-	./processador aux.txt
+	./processador nomes.txt ${NOME}
 
 clean:
-	rm -r lex.yy.c normalizador *.dSYM processador aux.txt nomes.txt
+	rm -r lex.yy.c formatador *.dSYM normalizador aux.txt nomes.txt
 
 cleans:
 	rm -r aux.txt lex.yy.c *.dSYM
