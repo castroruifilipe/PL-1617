@@ -5,13 +5,12 @@
     #include <stdio.h>
 
     GTree * verbos;
-    
+    FILE *index2;
 %}
 
 %option noyywrap
 
 %%
-
     char * verb;
     char * encontra = strdup("true");
     char * token;
@@ -47,24 +46,37 @@ did\ [a-zA-Z]+\ [a-zA-Z]+ {
     }
 }
 
-
-.|\n {;}
-
+.|\n {
+    ;
+}
 %%
 
-gboolean print_pair(gpointer k, gpointer v, gpointer d) {
-    printf("%s: %s\n", k, v);
-
+gboolean print_pair_HTML(gpointer k, gpointer v, gpointer d) {
+    FILE *index = (FILE *)index2;
+    char *value = (char *)v;
+    char *key = (char *)k;
+    if (strcmp(value,"true") == 0) {
+        fprintf(index,"<p>%s</p>", key);
+    }
     return FALSE;
 }
 
-void imprime_verbos() {
+void criar_HTML() {
+    char *title = "Verbos encontrados";
+    FILE *index = fopen("index.html", "w");
+    index2 = index;
+    fprintf(index,"<html> <head> <meta charset = 'UTF-8'/> <title> %s </title> </head>", title);
+    fprintf(index,"<body> <h1> %s </h1>", title);
+    fprintf(index,"<p>___________________________________________________________</p>");
 
-    g_tree_foreach(verbos, print_pair, NULL);
+    g_tree_foreach(verbos, print_pair_HTML, NULL);
+
+    fprintf(index,"<p>___________________________________________________________</p>");
+	fprintf(index,"</body></html>");
+
 }
 
 int main (int argc, char* argv[]) {
-    
     verbos = g_tree_new((GCompareFunc)strcmp);
     char * verbo;
     char * inicial = strdup("false");
@@ -78,12 +90,11 @@ int main (int argc, char* argv[]) {
             verbo = strdup(buffer);
             g_tree_insert(verbos,verbo,inicial);
     }
+
     yyin = fopen(argv[1],"r");
     yylex();
-    imprime_verbos();
 
-
+    criar_HTML();
 
     return 0;
 }
-
