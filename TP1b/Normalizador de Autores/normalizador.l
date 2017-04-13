@@ -1,47 +1,75 @@
 %{
     #include <string.h>
 
-    int duvidas = 0;
 %}
 
 %option noyywrap
+%x SUB
 
 %%
-"i aren't"                      { printf("i am not"); }
+    FILE * aux = fopen("aux.txt","w+");
 
-"shan't"|"sha'n't"              { printf("shall not"); }
-"can't"                         { printf("can not"); }
-"won't"                         { printf("will not"); }
-"n't"                           { printf(" not"); }       // em todos os outros casos
 
-"'m"                            { printf(" am"); }
+author\ *=\ *    {   
+        fprintf(aux,"author = ");
+        BEGIN SUB;
+}
 
-"'re"                           { printf(" are"); }
+editor\ *=\ *    {   
+        fprintf(aux,"editor = ");
+        BEGIN SUB;
+}
 
-"where'd"                       { printf("where did"); }
+<SUB>\{\\'a\}    {   fprintf(aux,"á");   }   
+<SUB>\{\\'e\}    {   fprintf(aux,"é");   } 
+<SUB>\{\\'i\}    {   fprintf(aux,"í");   } 
+<SUB>\{\\'o\}    {   fprintf(aux,"ó");   } 
+<SUB>\{\\'u\}    {   fprintf(aux,"ú");   } 
 
-"y'all"                         { printf("you all"); }
-"y'all'd"                       { printf("you all would"); }
+<SUB>\{\\'A\}    {   fprintf(aux,"Á");   }   
+<SUB>\{\\'E\}    {   fprintf(aux,"É");   } 
+<SUB>\{\\'I\}    {   fprintf(aux,"Í");   } 
+<SUB>\{\\'O\}    {   fprintf(aux,"Ó");   } 
+<SUB>\{\\'U\}    {   fprintf(aux,"Ú");   } 
 
-"how'd"                         { printf("how did"); }
-"how'd'y"                       { printf("how do you"); }
-"'d've"                         { printf(" would have"); }
-"'d"                            { printf(" [had,would]"); duvidas++; } // em todos os outros casos
-"'ve"                           { printf(" have"); }
+<SUB>\{\\~a\}    {   fprintf(aux,"ã");   }   
+<SUB>\{\\~o\}    {   fprintf(aux,"õ");   } 
 
-"how'll"                        { printf("how will"); }
-"'ll"                           { printf(" [shall,will]"); duvidas++; } // em todos os outros casos
+<SUB>\{\\^a\}    {   fprintf(aux,"â");   }   
+<SUB>\{\\^e\}    {   fprintf(aux,"ê");   }  
+<SUB>\{\\^o\}    {   fprintf(aux,"ô");   }  
 
-"let's"                         { printf("let us"); }
-"it's"                          { printf("it [has,is]"); duvidas++; }
-"so's"                          { printf("so [as,is]"); }
-"'s"                            { printf(" [has,is,does]"); duvidas++; }
+<SUB>\{\\^A\}    {   fprintf(aux,"Â");   }   
+<SUB>\{\\^E\}    {   fprintf(aux,"Ê");   }  
+<SUB>\{\\^O\}    {   fprintf(aux,"Ô");   }  
 
-"o'clock"                       { printf("of the clock"); }
+<SUB>\{\\c\{c\}\}    {   fprintf(aux,"ç");   } 
+
+<SUB>[A-Z]\.\}   {   fprintf(aux,"%s",yytext);   }
+
+<SUB>[A-Z]\.\ *  {   fprintf(aux,"%c. ",yytext[0]);  }
+
+<SUB>\},        {
+       fprintf(aux,"%s",yytext);
+       BEGIN INITIAL;
+}
+
+<SUB>\",        {   
+        fprintf(aux,"},");
+        BEGIN INITIAL;
+ }
+
+<SUB>\"         {   fprintf(aux,"{");   }
+
+<*>.|\n         {   fprintf(aux,"%s",yytext);   }
+
+<*>ENDFILE      {   fclose(aux);    }
 %%
 
-int main() {
+int main(int argc, char** argv) {
+    if(argc==2)
+        yyin = fopen(argv[1],"r");
     yylex();
-    printf("Verifique casos de dúvida: %d casos\n", duvidas);
+
     return 1;
 }
