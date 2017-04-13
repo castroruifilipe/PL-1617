@@ -9,8 +9,12 @@
 %%
     FILE * nomes = fopen("nomes.txt","w+");
     char * token;
-    char * nome[20];
+    char * nomeNoN[20];
+    char * nomeN[20];
+    char nomeTodo[128];
     int i=0;
+    int k=0;
+    int n=0;
 
 author\ =\ \{ |
 editor\ =\ \{    {   
@@ -18,31 +22,40 @@ editor\ =\ \{    {
         BEGIN LINHA;
 }
 
+        //Este deixava assim
 <LINHA>[a-zA-Zá-úãõÁ-ÚâêôÂÊÔç ]+\,        {
        fprintf(nomes,"%s",yytext);
+       nomeN[k] = strdup(yytext);
        BEGIN COMPRESSAO; 
 }
 
+        //Aqui punha um que só apanhava a palavra (como temos na ultima ER da LINHA) e 
+        // começava o estado NOME
 <LINHA>[a-zA-Zá-úãõÁ-ÚâêôÂÊÔç]+\ and\  {
         token = strtok(yytext," ");
-        nome[i] = strdup(token);
-        fprintf(nomes,"%s,",nome[i]);
+        nomeNoN[i] = strdup(token);
+        fprintf(nomes,"%s,",nomeNoN[i]);
+        nomeTodo = strdup(token);
         for(int j=0; j<i ; j++)
         {
-            fprintf(nomes," %c.",nome[j][0]);
+            fprintf(nomes," %c.",nomeNoN[j][0]);
+            nomeNoN[j][1] = ".";
+            nomeNoN[j][2] = "\0";
+            strcat(nomeTodo," ");
+            strcat(nomeTodo,nomeNoN[j]);
         }
 
         fprintf(nomes," and ");
         i=0;
 }
-
+        //Este já não ia ter
 <LINHA>[a-zA-Zá-úãõÁ-ÚâêôÂÊÔç]+\},  {
         token = strtok(yytext,"}");
-        nome[i] = strdup(token);
-        fprintf(nomes,"%s,",nome[i]);
+        nomeNoN[i] = strdup(token);
+        fprintf(nomes,"%s,",nomeNoN[i]);
         for(int j=0; j<i ; j++)
         {
-            fprintf(nomes," %c.",nome[j][0]);
+            fprintf(nomes," %c.",nomeNoN[j][0]);
         }
 
         fprintf(nomes,"},");
@@ -51,9 +64,13 @@ editor\ =\ \{    {
         BEGIN INITIAL;
 }
 
-
+        //No estado nome tem uma ER igual a esta que também só copia para o array
+        //o yytext. Depois se no Estado Nome encontrarmos a ER / and/ fazíamos o tratamento 
+        //do array de strings e íamos para o Estado LINHA
+        //Se no estado NOME encontrássemos a ER \} então fazíamos o tratamento do array de 
+        //Strings e íamos para o estado INITIAL 
 <LINHA>[a-zA-Zá-úãõÁ-ÚâêôÂÊÔç]+\       {
-        nome[i] = strdup(yytext);
+        nomeNoN[i] = strdup(yytext);
         i++;
 }
 
