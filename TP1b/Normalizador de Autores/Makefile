@@ -1,17 +1,17 @@
-V=normalizador
-$V: $V.l
-	flex $V.l
-	gcc -g lex.yy.c -o $V 
+all: normalizador ${FILE} processador cleans
 
-P=processador
-$P: $P.l
-	flex $P.l
-	gcc -g lex.yy.c -o $P
+normalizador: normalizador.l
+	flex normalizador.l
+	gcc -g lex.yy.c -o normalizador 
+	./normalizador ${FILE}
 
-normalizar:
-	normalizador
-	./normalizador exemplo-utf8.bib
+processador: processador.l
+	flex processador.l
+	gcc -g lex.yy.c -o processador 
+	./processador aux.txt
 
- processar: ./processador aux.txt
+clean:
+	rm -r lex.yy.c normalizador *.dSYM processador aux.txt nomes.txt
 
- all: normalizar processar
+cleans:
+	rm -r aux.txt lex.yy.c *.dSYM
