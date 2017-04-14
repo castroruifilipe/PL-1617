@@ -17,7 +17,6 @@ processador: processador.l
 
 grafo: 
 	dot -Tpng -o grafo.png grafo.dot
-	open grafo.png
 
 clean:
 	rm -r formatador normalizador aux.txt nomes.txt processador grafo.dot grafo.png

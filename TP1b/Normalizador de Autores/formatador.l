@@ -9,43 +9,54 @@
 %%
     FILE * aux = fopen("aux.txt","w+");
 
+<INITIAL>(?i:author|editor)\ *=\ *\{\ *\},\n    {;}
 
-author\ *=\ *    {   
+<INITIAL>(?i:author)\ *=\ *    {   
         fprintf(aux,"author = ");
         BEGIN SUB;
 }
 
-editor\ *=\ *    {   
+<INITIAL>(?i:editor)\ *=\ *    {   
         fprintf(aux,"editor = ");
         BEGIN SUB;
 }
 
-<SUB>\{\\'a\}    {   fprintf(aux,"á");   }   
-<SUB>\{\\'e\}    {   fprintf(aux,"é");   } 
-<SUB>\{\\'i\}    {   fprintf(aux,"í");   } 
-<SUB>\{\\'o\}    {   fprintf(aux,"ó");   } 
-<SUB>\{\\'u\}    {   fprintf(aux,"ú");   } 
+<SUB>\{?\\'a\}?    {   fprintf(aux,"á");   }   
+<SUB>\{?\\'e\}?    {   fprintf(aux,"é");   } 
+<SUB>\{?\\'i\}?    {   fprintf(aux,"í");   } 
+<SUB>\{?\\'o\}?    {   fprintf(aux,"ó");   } 
+<SUB>\{?\\'u\}?    {   fprintf(aux,"ú");   } 
 
-<SUB>\{\\'A\}    {   fprintf(aux,"Á");   }   
-<SUB>\{\\'E\}    {   fprintf(aux,"É");   } 
-<SUB>\{\\'I\}    {   fprintf(aux,"Í");   } 
-<SUB>\{\\'O\}    {   fprintf(aux,"Ó");   } 
-<SUB>\{\\'U\}    {   fprintf(aux,"Ú");   } 
+<SUB>\{?\\'A\}?    {   fprintf(aux,"Á");   }   
+<SUB>\{?\\'E\}?    {   fprintf(aux,"É");   } 
+<SUB>\{?\\'I\}?    {   fprintf(aux,"Í");   } 
+<SUB>\{?\\'O\}?    {   fprintf(aux,"Ó");   } 
+<SUB>\{?\\'U\}?    {   fprintf(aux,"Ú");   } 
 
-<SUB>\{\\~a\}    {   fprintf(aux,"ã");   }   
-<SUB>\{\\~o\}    {   fprintf(aux,"õ");   } 
+<SUB>\{?\\~a\}?    {   fprintf(aux,"ã");   }   
+<SUB>\{?\\~o\}?    {   fprintf(aux,"õ");   } 
 
-<SUB>\{\\^a\}    {   fprintf(aux,"â");   }   
-<SUB>\{\\^e\}    {   fprintf(aux,"ê");   }  
-<SUB>\{\\^o\}    {   fprintf(aux,"ô");   }  
+<SUB>\{?\\^a\}?    {   fprintf(aux,"â");   }   
+<SUB>\{?\\^e\}?    {   fprintf(aux,"ê");   }  
+<SUB>\{?\\^o\}?    {   fprintf(aux,"ô");   }  
 
-<SUB>\{\\^A\}    {   fprintf(aux,"Â");   }   
-<SUB>\{\\^E\}    {   fprintf(aux,"Ê");   }  
-<SUB>\{\\^O\}    {   fprintf(aux,"Ô");   }  
+<SUB>\{?\\^A\}?    {   fprintf(aux,"Â");   }   
+<SUB>\{?\\^E\}?    {   fprintf(aux,"Ê");   }  
+<SUB>\{?\\^O\}?    {   fprintf(aux,"Ô");   }  
 
-<SUB>\{\\c\{c\}\}    {   fprintf(aux,"ç");   } 
+<SUB>\{?\\c\{c\}\}?    {   fprintf(aux,"ç");   } 
 
 <SUB>[A-Z]\.\}   {   fprintf(aux,"%s",yytext);   }
+
+<SUB>[A-Z]\.\ *\},  {   
+        fprintf(aux,"%c.},",yytext[0]);  
+        BEGIN INITIAL;
+}
+
+<SUB>[A-Z]\.\ *\",  {   
+        fprintf(aux,"%c.},",yytext[0]);  
+        BEGIN INITIAL;
+}
 
 <SUB>[A-Z]\.\ *  {   fprintf(aux,"%c. ",yytext[0]);  }
 
@@ -58,6 +69,8 @@ editor\ *=\ *    {
         fprintf(aux,"},");
         BEGIN INITIAL;
  }
+
+<SUB>\ *\n\ *     {fprintf(aux,"PPPPPPP");}
 
 <SUB>\ (do|da|de|das|dos)\  {   fprintf(aux," ");   }
 
