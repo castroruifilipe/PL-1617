@@ -59,6 +59,8 @@ editor\ *=\ *    {
         BEGIN INITIAL;
  }
 
+<SUB>\ (do|da|de|das|dos)\  {   fprintf(aux," ");   }
+
 <SUB>\"         {   fprintf(aux,"{");   }
 
 <*>.|\n         {   fprintf(aux,"%s",yytext);   }

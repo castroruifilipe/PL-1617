@@ -12,7 +12,7 @@
     char * nome[20];
     int i=0;
 
-author\ =\ \{ |
+<INITIAL>author\ =\ \{ |
 editor\ =\ \{    {   
         fprintf(nomes,"%s",yytext);
         BEGIN LINHA;

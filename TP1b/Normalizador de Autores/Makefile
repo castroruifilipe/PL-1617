@@ -1,4 +1,4 @@
-all: formatador ${FILE} normalizador  processador ${NOME} cleans
+all: formatador normalizador processador grafo cleans
 
 formatador: formatador.l
 	flex formatador.l
@@ -12,11 +12,15 @@ normalizador: normalizador.l
 
 processador: processador.l
 	flex processador.l
-	gcc -g lex.yy.c -o processador 
+	gcc -g `pkg-config --cflags glib-2.0` lex.yy.c -o processador `pkg-config --libs glib-2.0`
 	./processador nomes.txt ${NOME}
 
+grafo: 
+	dot -Tpng -o grafo.png grafo.dot
+	open grafo.png
+
 clean:
-	rm -r lex.yy.c formatador *.dSYM normalizador aux.txt nomes.txt
+	rm -r formatador normalizador aux.txt nomes.txt processador grafo.dot grafo.png
 
 cleans:
-	rm -r aux.txt lex.yy.c *.dSYM
+	rm -r lex.yy.c *.dSYM

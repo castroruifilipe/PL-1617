@@ -6,6 +6,7 @@
 
 	GTree * nomesTree;
 	char * recebido;
+	int counter = 1;
 %}
 
 %option noyywrap
@@ -13,7 +14,7 @@
 
 %%
 	char * nome[20];
-	char nomeTodo[128];
+	char * nomeTodo;
 	char * nomesLinha[128];
 	int i = 0;
 	int n = 0;
@@ -22,9 +23,10 @@
 	BEGIN NOME;
 }
 
-<NOME>\ and\    {
+<NOME>\ and\     {
 	nomeTodo = strdup(nome[0]);
 	for (int j = 1; j < i ; j++) {
+		
 		strcat(nomeTodo,nome[j]);
 	}
 	nomesLinha[n] = strdup(nomeTodo);
@@ -33,6 +35,7 @@
 }
 
 <NOME>\},       {
+	
 	nomeTodo = strdup(nome[0]);
 	for (int j = 1; j < i; j++) {
 		strcat(nomeTodo,nome[j]);
@@ -40,19 +43,20 @@
 	nomesLinha[n] = strdup(nomeTodo);
 	i = 0;
 	for (int j = 0; j <= n; j++) {
-		if (strcmp(nomesLinha[n],recebido)) {
-			for (int k = 0; k < n; k++) {
+		if (strcmp(nomesLinha[j],recebido) == 0) {
+			for (int k = 0; k <= n; k++) {
 				if (k != j) {
 					g_tree_insert(nomesTree, nomesLinha[k], NULL);
 				}
 			}
+			j = n+1; //Para sair do ciclo
 		}
 	}
 	n = 0;
 	BEGIN INITIAL;
 }
 
-<NOME>[a-zA-Zá-úãõÁ-ÚâêôÂÊÔç ]+\,   {
+<NOME>[A-Z][a-zA-Zá-úãõÁ-ÚâêôÂÊÔç ]+\,   {
 	nome[i] = strdup(yytext);
 	i++;
 }
@@ -65,19 +69,38 @@
 
 <*>.|\n         {   ;   }
 
-<*>ENDFILE      {   fclose(nomes);    }
 %%
 
+gboolean print_name(gpointer k, gpointer v, gpointer d) {
+		fprintf(yyout,"\tColaborador%d [label=\"%s\"];\n",counter,k);
+		fprintf(yyout,"\tAutor -> Colaborador%d [label=\"Colabora\"];\n",counter);
+		counter++;
+    return FALSE;
+}
+
+void geraGrafo() {
+	fprintf(yyout,"digraph Colaboradores {\n");
+	fprintf(yyout,"\tAutor [shape=polygon,sides=6,peripheries=2,color=lightblue,label=\"%s\"];\n",recebido);
+	g_tree_foreach(nomesTree, print_name, NULL);
+
+	fprintf(yyout,"}");
+}
+
 int main(int argc, char** argv) {
-	if (argc == 3) {
-		recebido = strdup(argv[2]);
+	if (argc > 2) {
 		yyin = fopen(argv[1],"r");
-	} else {
-		return 1;
-	}
+		recebido = strdup(argv[2]);
+		for(int i=3; i<argc; i++){
+			strcat(recebido," ");
+			strcat(recebido,strdup(argv[i]));
+		}
+	} 
 
 	nomesTree = g_tree_new((GCompareFunc)strcmp); 
+
 	yylex();
+	yyout = fopen("grafo.dot","w+");
+	geraGrafo();
 
 	return 0;
 }
