@@ -41,7 +41,7 @@ editor\ =\ \{    {
         BEGIN INITIAL;
 }
 
-<LINHA>and\  {
+<LINHA>\ *and\ *  {
         nome[i-1][strlen(nome[i-1])-1] = '\0';
         fprintf(nomes,"%s,",nome[i-1]);
         for(int j=0; j<i-1 ; j++)
@@ -80,6 +80,7 @@ editor\ =\ \{    {
         nome[i] = strdup(yytext);
         i++;
 }
+
 
 <LINHA>[a-zA-Zá-úãõÁ-ÚâêôÂÊÔç]+\       {
         nome[i] = strdup(yytext);

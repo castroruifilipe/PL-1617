@@ -21,6 +21,8 @@
         BEGIN SUB;
 }
 
+<SUB>(\ and){2}         {fprintf(aux," and");   }
+
 <SUB>\{?\\'a\}?    {   fprintf(aux,"á");   }   
 <SUB>\{?\\'e\}?    {   fprintf(aux,"é");   } 
 <SUB>\{?\\'i\}?    {   fprintf(aux,"í");   } 
@@ -60,9 +62,14 @@
 
 <SUB>[A-Z]\.\ *  {   fprintf(aux,"%c. ",yytext[0]);  }
 
-<SUB>\},        {
-       fprintf(aux,"%s",yytext);
+
+<SUB>\ *\},        {
+       fprintf(aux,"},");
        BEGIN INITIAL;
+}
+
+<SUB>\{\ *        {
+       fprintf(aux,"{");
 }
 
 <SUB>\",        {   
@@ -70,7 +77,7 @@
         BEGIN INITIAL;
  }
 
-<SUB>\ *\n\ *     {fprintf(aux,"PPPPPPP");}
+<SUB>\ *\n\ *     {fprintf(aux," ");}
 
 <SUB>\ (do|da|de|das|dos)\  {   fprintf(aux," ");   }
 
