@@ -5,15 +5,14 @@
     #include <stdio.h>
 
     GTree * verbos;
-    FILE *index2;
 %}
 
 %option noyywrap
 
 %%
     char * verb;
-    char * encontra = strdup("true");
     char * token;
+    gpointer aux = NULL;
 
 to\ [a-zA-Z]+ |
 can\ [a-zA-Z]+ |
@@ -28,8 +27,8 @@ might\ [a-zA-Z]+ {
     token = strtok(NULL," ,.\n?");
     verb = strdup(token);
 
-    if (g_tree_lookup(verbos,verb) != NULL) {
-        g_tree_insert(verbos, verb, encontra);
+    if ((aux = g_tree_lookup(verbos,verb)) != NULL) {
+        (*(int *)aux)++;
     }
 }
 
@@ -41,8 +40,8 @@ did\ [a-zA-Z]+\ [a-zA-Z]+ {
     token = strtok(NULL," ,.\n?");
     verb = strdup(token);
 
-    if (g_tree_lookup(verbos,verb) != NULL) {
-        g_tree_insert(verbos, verb, encontra);
+    if ((aux = g_tree_lookup(verbos,verb)) != NULL) {
+        (*(int *)aux)++;
     }
 }
 
@@ -51,50 +50,49 @@ did\ [a-zA-Z]+\ [a-zA-Z]+ {
 }
 %%
 
-gboolean print_pair_HTML(gpointer k, gpointer v, gpointer d) {
-    FILE *index = (FILE *)index2;
-    char *value = (char *)v;
-    char *key = (char *)k;
-    if (strcmp(value,"true") == 0) {
-        fprintf(index,"<p>%s</p>", key);
+gboolean print_pair_HTML2(gpointer k, gpointer v, gpointer d) {
+    if ((*(int *)v) > 0) {
+        fprintf(yyout,"<tr><td>%s</td><td>%d</td></tr>", k, (*(int *)v));
     }
     return FALSE;
 }
 
 void criar_HTML() {
     char *title = "Verbos encontrados";
-    FILE *index = fopen("index.html", "w");
-    index2 = index;
-    fprintf(index,"<html> <head> <meta charset = 'UTF-8'/> <title> %s </title> </head>", title);
-    fprintf(index,"<body> <h1> %s </h1>", title);
-    fprintf(index,"<p>___________________________________________________________</p>");
 
-    g_tree_foreach(verbos, print_pair_HTML, NULL);
+    fprintf(yyout,"<html> <head> <meta charset = 'UTF-8'/> <center> <title> %s </title> </head>", title);
+    fprintf(yyout,"<body> <h1> %s </h1>", title);
+    fprintf(yyout,"<body background=\"https://previews.123rf.com/images/etiamos/etiamos1206/etiamos120600134/14180784-Background-made-of-papers-with-colorful-letters-Stock-Vector-school-background-doodle.jpg\">");
 
-    fprintf(index,"<p>___________________________________________________________</p>");
-	fprintf(index,"</body></html>");
+    fprintf(yyout, "<table border=\"1\" width=\"500\" height=\"150\" bordercolor=\"green\" align=\"center\">");
+    fprintf(yyout, "<tr><th>Verbo</th><th>Número de ocorrências</th></tr>");
+    g_tree_foreach(verbos, print_pair_HTML2, NULL);
+
+	fprintf(yyout,"</center></body></html>");
 
 }
 
 int main (int argc, char* argv[]) {
     verbos = g_tree_new((GCompareFunc)strcmp);
     char * verbo;
-    char * inicial = strdup("false");
     char * buffer;
     size_t len;
+    int * j;
     
     FILE * vrb = fopen("verbos.txt","r");
     int read;
     while((read = getline(&buffer,&len,vrb)) != -1){
             buffer[strlen(buffer) - 1]='\0';
             verbo = strdup(buffer);
-            g_tree_insert(verbos,verbo,inicial);
+            j = (int *)malloc(sizeof(int));
+            *j = 0;
+            g_tree_insert(verbos,verbo,j);
     }
 
     yyin = fopen(argv[1],"r");
     yylex();
 
+    yyout = fopen("index.html", "w+");
     criar_HTML();
-
     return 0;
 }

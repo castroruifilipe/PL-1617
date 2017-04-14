@@ -1,5 +1,7 @@
 %{
     #include <string.h>
+    #define RED   "\x1B[31m"
+    #define RESET "\x1B[0m"
 
     int duvidas = 0;
 %}
@@ -40,8 +42,13 @@
 "o'clock"                       { printf("of the clock"); }
 %%
 
-int main() {
+int main(int argc, char **argv) {
+    if (argc == 2) {
+        yyin = fopen(argv[1], "r");
+    }
     yylex();
-    printf("Verifique casos de dúvida: %d casos\n", duvidas);
-    return 1;
+    printf("%s---------------------------------------------------\n", RED);
+    printf("\tVerifique casos de dúvida: %d casos\n", duvidas);
+    printf("---------------------------------------------------%s\n", RESET);
+    return 0;
 }
