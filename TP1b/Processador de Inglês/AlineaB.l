@@ -14,15 +14,8 @@
     char * token;
     gpointer aux = NULL;
 
-to\ [a-zA-Z]+ |
-can\ [a-zA-Z]+ |
-could\ [a-zA-Z]+ |
-shall\ [a-zA-Z]+ |
-should\ [a-zA-Z]+ |
-will\ [a-zA-Z]+ |
-would\ [a-zA-Z]+ |
-may\ [a-zA-Z]+ |
-might\ [a-zA-Z]+ {
+
+(to|can|could|shall|should|will|would|may|might)\ [a-zA-Z]+ {
     token = strtok(yytext," ");
     token = strtok(NULL," ,.\n?");
     verb = strdup(token);
@@ -32,9 +25,7 @@ might\ [a-zA-Z]+ {
     }
 }
 
-do\ [a-zA-Z]+\ [a-zA-Z]+ |
-does\ [a-zA-Z]+\ [a-zA-Z]+ |
-did\ [a-zA-Z]+\ [a-zA-Z]+ {
+(?i:do|does|did)\ [a-zA-Z]+\ [a-zA-Z]+ {
     token = strtok(yytext," ");
     token = strtok(NULL," ");
     token = strtok(NULL," ,.\n?");
@@ -45,14 +36,13 @@ did\ [a-zA-Z]+\ [a-zA-Z]+ {
     }
 }
 
-.|\n {
-    ;
-}
+.|\n { ;}
+
 %%
 
 gboolean print_pair_HTML2(gpointer k, gpointer v, gpointer d) {
     if ((*(int *)v) > 0) {
-        fprintf(yyout,"<tr><td>%s</td><td>%d</td></tr>", k, (*(int *)v));
+        fprintf(yyout,"<tr><td>%s</td><td>%d</td></tr>", (char*)k, (*(int *)v));
     }
     return FALSE;
 }
@@ -93,6 +83,6 @@ int main (int argc, char* argv[]) {
     yylex();
 
     yyout = fopen("index.html", "w+");
-    criar_HTML();
+    // criar_HTML();
     return 0;
 }

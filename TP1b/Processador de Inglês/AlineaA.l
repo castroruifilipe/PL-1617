@@ -9,6 +9,8 @@
 %option noyywrap
 
 %%
+    char* token;
+
 "i aren't"                      { printf("i am not"); }
 
 "shan't"|"sha'n't"              { printf("shall not"); }
@@ -37,7 +39,10 @@
 "let's"                         { printf("let us"); }
 "it's"                          { printf("it [has,is]"); duvidas++; }
 "so's"                          { printf("so [as,is]"); }
-"'s"                            { printf(" [has,is,does]"); duvidas++; }
+(?i:(i|you|she|he|it|we|they))\'s { 	token = strtok(yytext,"'");
+					printf("%s [has,is,does]", yytext); duvidas++; }
+
+([a-zA-Z]+\'[sS])		{ printf(" [has,is,does,possesive case]"); duvidas++; }
 
 "o'clock"                       { printf("of the clock"); }
 %%
