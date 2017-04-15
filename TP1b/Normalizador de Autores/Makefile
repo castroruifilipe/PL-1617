@@ -28,4 +28,4 @@ grafo:
 	dot -Tpng -o grafo.png grafo.dot
 
 clean:
-	rm -r cleaner formatador normalizador processador limpo.txt formatado.txt normalizado.txt grafo.dot grafo.png *.dSYM
+	rm -r cleaner formatador normalizador processador limpo.txt formatado.txt normalizado.txt grafo.dot grafo.png

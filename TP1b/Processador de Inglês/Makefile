@@ -1,7 +1,7 @@
 AlineaA: AlineaA.l
 	flex AlineaA.l
 	gcc -g lex.yy.c -o AlineaA
-	rm -r lex.yy.c *.dSYM
+	rm -r lex.yy.c
 	./AlineaA $(FILE)
 
 AlineaB: AlineaB.l
