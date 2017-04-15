@@ -36,6 +36,28 @@
     }
 }
 
+(to|can|could|shall|should|will|would|may|might)(\ not)?\ [a-zA-Z]+ {
+    token = strtok(yytext," ");
+    token = strtok(NULL," ");
+    token = strtok(NULL," ,.\n?");
+    verb = strdup(token);
+
+    if ((aux = g_tree_lookup(verbos,verb)) != NULL) {
+        (*(int *)aux)++;
+    }
+}
+
+(to|can|could|shall|should|will|would|may|might)(n)?(\'t)?\ [a-zA-Z]+ {
+    token = strtok(yytext," ");
+    token = strtok(NULL," ,.\n?");
+    verb = strdup(token);
+
+    if ((aux = g_tree_lookup(verbos,verb)) != NULL) {
+        (*(int *)aux)++;
+    }
+}
+
+
 .|\n { ;}
 
 %%
@@ -83,6 +105,6 @@ int main (int argc, char* argv[]) {
     yylex();
 
     yyout = fopen("index.html", "w+");
-    // criar_HTML();
+    criar_HTML();
     return 0;
 }

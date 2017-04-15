@@ -39,10 +39,12 @@
 "let's"                         { printf("let us"); }
 "it's"                          { printf("it [has,is]"); duvidas++; }
 "so's"                          { printf("so [as,is]"); }
-(?i:(i|you|she|he|it|we|they))\'s { 	token = strtok(yytext,"'");
-					printf("%s [has,is,does]", yytext); duvidas++; }
 
-([a-zA-Z]+\'[sS])		{ printf(" [has,is,does,possesive case]"); duvidas++; }
+(?i:(i|you|she|he|it|we|they))\'s   {   token = strtok(yytext,"'");
+                                        printf("%s [has,is,does]", yytext); duvidas++;  }
+
+([a-zA-Z]+\'[sS])		            {   printf(" [has,is,does,possesive case]"); duvidas++; }
+
 
 "o'clock"                       { printf("of the clock"); }
 %%
