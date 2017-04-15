@@ -45,7 +45,7 @@ bang
 banish
 bash
 bat
-be (am,are)
+be
 bear
 bear
 beat
