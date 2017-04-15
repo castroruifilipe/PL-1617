@@ -1,97 +1,60 @@
 %{
-    #include <string.h>
-
+	#include <string.h>
 %}
 
 %option noyywrap
 %x SUB
 
 %%
-    FILE * aux = fopen("aux.txt","w+");
+<INITIAL>(author|editor)[ ]=[ ]\{		{	fprintf(yyout, "%s", yytext);
+											BEGIN SUB;						}
+	
+<SUB>\{?\\'a\}?							{	fprintf(yyout, "á");			}   
+<SUB>\{?\\'e\}?							{	fprintf(yyout, "é");			} 
+<SUB>\{?\\'i\}?							{	fprintf(yyout, "í");			} 
+<SUB>\{?\\'o\}?							{	fprintf(yyout, "ó");			} 
+<SUB>\{?\\'u\}?							{	fprintf(yyout, "ú");			} 
 
-<INITIAL>(?i:author|editor)\ *=\ *\{\ *\},\n    {;}
+<SUB>\{?\\'A\}?							{	fprintf(yyout,"Á");				}   
+<SUB>\{?\\'E\}?							{	fprintf(yyout,"É");				} 
+<SUB>\{?\\'I\}?							{	fprintf(yyout,"Í");				} 
+<SUB>\{?\\'O\}?							{	fprintf(yyout,"Ó");				} 
+<SUB>\{?\\'U\}?							{	fprintf(yyout,"Ú");				} 
 
-<INITIAL>(?i:author)\ *=\ *    {   
-        fprintf(aux,"author = ");
-        BEGIN SUB;
-}
+<SUB>\{?\\~a\}?							{	fprintf(yyout,"ã");				}   
+<SUB>\{?\\~o\}?							{	fprintf(yyout,"õ");				} 
 
-<INITIAL>(?i:editor)\ *=\ *    {   
-        fprintf(aux,"editor = ");
-        BEGIN SUB;
-}
+<SUB>\{?\\^a\}?							{	fprintf(yyout,"â");				}   
+<SUB>\{?\\^e\}?							{	fprintf(yyout,"ê");				}  
+<SUB>\{?\\^o\}?							{	fprintf(yyout,"ô");				}  
 
-<SUB>(\ and){2}         {fprintf(aux," and");   }
+<SUB>\{?\\^A\}?							{	fprintf(yyout,"Â");				}   
+<SUB>\{?\\^E\}?							{	fprintf(yyout,"Ê");				}  
+<SUB>\{?\\^O\}?							{	fprintf(yyout,"Ô");				}  
 
-<SUB>\{?\\'a\}?    {   fprintf(aux,"á");   }   
-<SUB>\{?\\'e\}?    {   fprintf(aux,"é");   } 
-<SUB>\{?\\'i\}?    {   fprintf(aux,"í");   } 
-<SUB>\{?\\'o\}?    {   fprintf(aux,"ó");   } 
-<SUB>\{?\\'u\}?    {   fprintf(aux,"ú");   } 
+<SUB>\{?\\c\{c\}\}?						{	fprintf(yyout,"ç");				}
 
-<SUB>\{?\\'A\}?    {   fprintf(aux,"Á");   }   
-<SUB>\{?\\'E\}?    {   fprintf(aux,"É");   } 
-<SUB>\{?\\'I\}?    {   fprintf(aux,"Í");   } 
-<SUB>\{?\\'O\}?    {   fprintf(aux,"Ó");   } 
-<SUB>\{?\\'U\}?    {   fprintf(aux,"Ú");   } 
+<SUB>[A-Z]\.\},							{	fprintf(yyout,"%c.},",yytext[0]);
+											BEGIN INITIAL;					}
 
-<SUB>\{?\\~a\}?    {   fprintf(aux,"ã");   }   
-<SUB>\{?\\~o\}?    {   fprintf(aux,"õ");   } 
+<SUB>[A-Z]\.[ ]*						{	fprintf(yyout,"%c. ",yytext[0]);}
 
-<SUB>\{?\\^a\}?    {   fprintf(aux,"â");   }   
-<SUB>\{?\\^e\}?    {   fprintf(aux,"ê");   }  
-<SUB>\{?\\^o\}?    {   fprintf(aux,"ô");   }  
+<SUB>\},        						{	fprintf(yyout, "%s", yytext);
+	   										BEGIN INITIAL;					}
 
-<SUB>\{?\\^A\}?    {   fprintf(aux,"Â");   }   
-<SUB>\{?\\^E\}?    {   fprintf(aux,"Ê");   }  
-<SUB>\{?\\^O\}?    {   fprintf(aux,"Ô");   }  
+<SUB>[ ](do|da|de|das|dos)[ ]			{	fprintf(yyout, " ");			}
 
-<SUB>\{?\\c\{c\}\}?    {   fprintf(aux,"ç");   } 
-
-<SUB>[A-Z]\.\}   {   fprintf(aux,"%s",yytext);   }
-
-<SUB>[A-Z]\.\ *\},  {   
-        fprintf(aux,"%c.},",yytext[0]);  
-        BEGIN INITIAL;
-}
-
-<SUB>[A-Z]\.\ *\",  {   
-        fprintf(aux,"%c.},",yytext[0]);  
-        BEGIN INITIAL;
-}
-
-<SUB>[A-Z]\.\ *  {   fprintf(aux,"%c. ",yytext[0]);  }
-
-
-<SUB>\ *\},        {
-       fprintf(aux,"},");
-       BEGIN INITIAL;
-}
-
-<SUB>\{\ *        {
-       fprintf(aux,"{");
-}
-
-<SUB>\",        {   
-        fprintf(aux,"},");
-        BEGIN INITIAL;
- }
-
-<SUB>\ *\n\ *     {fprintf(aux," ");}
-
-<SUB>\ (do|da|de|das|dos)\  {   fprintf(aux," ");   }
-
-<SUB>\"         {   fprintf(aux,"{");   }
-
-<*>.|\n         {   fprintf(aux,"%s",yytext);   }
-
-<*>ENDFILE      {   fclose(aux);    }
+<*>.|\n         						{	fprintf(yyout, "%s", yytext);	}
 %%
 
 int main(int argc, char** argv) {
-    if(argc==2)
-        yyin = fopen(argv[1],"r");
-    yylex();
+	if (argc == 2) {
+		yyin = fopen(argv[1], "r");
+	}
 
-    return 0;
+	yyout = fopen("formatado.txt", "w+");
+	yylex();
+	fclose(yyout);
+
+	return 0;
 }

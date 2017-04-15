@@ -7,17 +7,13 @@
 %x LINHA COMPRESSAO
 
 %%
-    FILE * nomes = fopen("nomes.txt","w+");
     char * token;
     char * nome[128];
     int i=0;
-    int c=0;
 
 <INITIAL>author\ =\ \{ | 
-editor\ =\ \{    {
-        printf("%d\n",c);
-        c++;   
-        fprintf(nomes,"%s",yytext);
+editor\ =\ \{    { 
+        fprintf(yyout,"%s",yytext);
         BEGIN LINHA;
 }
 
@@ -25,53 +21,53 @@ editor\ =\ \{    {
 <LINHA>[0-9]+\ and\    {
       for(int j=0; j<i ; j++)
         {
-            fprintf(nomes,"%s",nome[j]);
+            fprintf(yyout,"%s",nome[j]);
         }
-        fprintf(nomes,"%s",yytext);
+        fprintf(yyout,"%s",yytext);
         i=0;
 }
 
 <LINHA>[0-9]+\},    {
       for(int j=0; j<i ; j++)
         {
-            fprintf(nomes,"%s",nome[j]);
+            fprintf(yyout,"%s",nome[j]);
         }
-        fprintf(nomes,"%s",yytext);
+        fprintf(yyout,"%s",yytext);
         i=0;
         BEGIN INITIAL;
 }
 
 <LINHA>\ *and\ *  {
         nome[i-1][strlen(nome[i-1])-1] = '\0';
-        fprintf(nomes,"%s,",nome[i-1]);
+        fprintf(yyout,"%s,",nome[i-1]);
         for(int j=0; j<i-1 ; j++)
         {
-            fprintf(nomes," %c.",nome[j][0]);
+            fprintf(yyout," %c.",nome[j][0]);
         }
 
-        fprintf(nomes," and ");
+        fprintf(yyout," and ");
         i=0;
 }
 
 <LINHA>et\ al\.\ and\  {
         nome[i-1][strlen(nome[i-1])-1] = '\0';
-        fprintf(nomes,"%s,",nome[i-1]);
+        fprintf(yyout,"%s,",nome[i-1]);
         for(int j=0; j<i-1 ; j++)
         {
-            fprintf(nomes," %c.",nome[j][0]);
+            fprintf(yyout," %c.",nome[j][0]);
         }
-        fprintf(nomes," %s",yytext);
+        fprintf(yyout," %s",yytext);
         i=0;
 }
 
 <LINHA>et\ al\.\},  {
         nome[i-1][strlen(nome[i-1])-1] = '\0';
-        fprintf(nomes,"%s,",nome[i-1]);
+        fprintf(yyout,"%s,",nome[i-1]);
         for(int j=0; j<i-1 ; j++)
         {
-            fprintf(nomes," %c.",nome[j][0]);
+            fprintf(yyout," %c.",nome[j][0]);
         }
-        fprintf(nomes," %s",yytext);
+        fprintf(yyout," %s",yytext);
         i=0;
         BEGIN INITIAL;
 }
@@ -90,22 +86,22 @@ editor\ =\ \{    {
 <LINHA>[a-zA-Zá-úãõÁ-ÚâêôÂÊÔç]+\,        {
        for(int j=0; j<i ; j++)
         {
-            fprintf(nomes,"%s",nome[j]);
+            fprintf(yyout,"%s",nome[j]);
         }
-       fprintf(nomes,"%s",yytext);
+       fprintf(yyout,"%s",yytext);
        BEGIN COMPRESSAO; 
 }
 
 <LINHA>[a-zA-Zá-úãõÁ-ÚâêôÂÊÔç]+\},  {
         token = strtok(yytext,"}");
         nome[i] = strdup(token);
-        fprintf(nomes,"%s,",nome[i]);
+        fprintf(yyout,"%s,",nome[i]);
         for(int j=0; j<i ; j++)
         {
-            fprintf(nomes," %c.",nome[j][0]);
+            fprintf(yyout," %c.",nome[j][0]);
         }
 
-        fprintf(nomes,"},");
+        fprintf(yyout,"},");
         i=0;
 
         BEGIN INITIAL;
@@ -113,65 +109,68 @@ editor\ =\ \{    {
 
 
 <COMPRESSAO>[A-Z]\.   {
-        fprintf(nomes,"%c.",yytext[0]);
+        fprintf(yyout,"%c.",yytext[0]);
 }
 
 <COMPRESSAO>Á[a-z]+     {
-        fprintf(nomes,"A.");
+        fprintf(yyout,"A.");
 }
 
 <COMPRESSAO>É[a-z]+     {
-        fprintf(nomes,"A.");
+        fprintf(yyout,"A.");
 }
 
 <COMPRESSAO>Í[a-z]+     {
-        fprintf(nomes,"A.");
+        fprintf(yyout,"A.");
 }
 
 <COMPRESSAO>Ó[a-z]+     {
-        fprintf(nomes,"A.");
+        fprintf(yyout,"A.");
 }
 
 <COMPRESSAO>Ú[a-z]+     {
-        fprintf(nomes,"A.");
+        fprintf(yyout,"A.");
 }
 
 <COMPRESSAO>Â[a-z]+     {
-        fprintf(nomes,"A.");
+        fprintf(yyout,"A.");
 }
 
 <COMPRESSAO>Ê[a-z]+     {
-        fprintf(nomes,"A.");
+        fprintf(yyout,"A.");
 }
 
 <COMPRESSAO>Û[a-z]+     {
-        fprintf(nomes,"A.");
+        fprintf(yyout,"A.");
 }
 
 <COMPRESSAO>[a-zA-Zá-úãõÁ-ÚâêôÂÊÔç]+   {
-        fprintf(nomes,"%c.",yytext[0]);
+        fprintf(yyout,"%c.",yytext[0]);
 }
 
 <COMPRESSAO>\ and\       {
-        fprintf(nomes,"%s",yytext);
+        fprintf(yyout,"%s",yytext);
         i=0;
         BEGIN LINHA;
 }
 
 <COMPRESSAO>\},      {
-        fprintf(nomes,"%s",yytext);
+        fprintf(yyout,"%s",yytext);
         i=0;
         BEGIN INITIAL;
 }
 
-<*>.|\n         {   fprintf(nomes,"%s",yytext);   }
-
-<*>ENDFILE      {   fclose(nomes);    }
+<*>.|\n         {   fprintf(yyout,"%s",yytext);   }
 %%
 
 int main(int argc, char** argv) {
-    if(argc==2)
+    if(argc==2) {
         yyin = fopen(argv[1],"r");
+    }
+
+    yyout = fopen("normalizado.txt","w+");
     yylex();
+    fclose(yyout);
+
     return 0;
 }

@@ -26,7 +26,6 @@
 <NOME>\ and\     {
 	nomeTodo = strdup(nome[0]);
 	for (int j = 1; j < i ; j++) {
-		
 		strcat(nomeTodo,nome[j]);
 	}
 	nomesLinha[n] = strdup(nomeTodo);
@@ -71,10 +70,10 @@
 %%
 
 gboolean print_name(gpointer k, gpointer v, gpointer d) {
-		fprintf(yyout,"\tColaborador%d [label=\"%s\"];\n",counter,k);
-		fprintf(yyout,"\tAutor -> Colaborador%d [label=\"Colabora\"];\n",counter);
-		counter++;
-    return FALSE;
+	fprintf(yyout,"\tColaborador%d [label=\"%s\"];\n",counter,k);
+	fprintf(yyout,"\tAutor -> Colaborador%d [label=\"Colabora\"];\n",counter);
+	counter++;
+	return FALSE;
 }
 
 void geraGrafo() {
@@ -93,7 +92,7 @@ int main(int argc, char** argv) {
 			strcat(recebido," ");
 			strcat(recebido,strdup(argv[i]));
 		}
-	} 
+	}
 
 	nomesTree = g_tree_new((GCompareFunc)strcmp); 
 
