@@ -1,0 +1,15 @@
+You are not invited.
+You can not smoke in here.
+We will not regret it.
+She did not remember me.
+I am older can than you.
+They are happy to see me.
+She [had,would] gone to bed before he called.
+They have asked me before.
+I [shall,will] tell you later.
+It [has,is,does] a small world after all.
+The number is interpreted using Python [has,is,does] rules.
+
+---------------------------------------------------
+	Verifique casos de dúvida: 4 casos
+---------------------------------------------------
