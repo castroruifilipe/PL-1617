@@ -6,25 +6,25 @@
 %x SUB
 
 %%
-<INITIAL>(?i:author|editor)[ ]*=[ ]*\{[ ]*\},\n    			{	;								}
+<INITIAL>(?i:author|editor)[ ]*=[ ]*\{[ ]*\},\n		{	;				}
 
-<INITIAL>(?i:author)[ ]*=[ ]*(\{|\")[ ]*    				{	fprintf(yyout, "author = {");
-																BEGIN SUB;						}
+<INITIAL>(?i:author)[ ]*=[ ]*(\{|\")[ ]*    		{	fprintf(yyout, "author = {");
+								BEGIN SUB;			}
 
-<INITIAL>(?i:editor)[ ]*=[ ]*(\{|\")[ ]*  					{	fprintf(yyout, "editor = {");
-																BEGIN SUB;						}
+<INITIAL>(?i:editor)[ ]*=[ ]*(\{|\")[ ]*  		{	fprintf(yyout, "editor = {");
+								BEGIN SUB;			}
 
-<SUB>[ ]*(\}|\"),   										{	fprintf(yyout, "},");
-																BEGIN INITIAL;					}
+<SUB>[ ]*(\}|\"),   					{	fprintf(yyout, "},");
+								BEGIN INITIAL;			}
 
-<SUB>([ ]and){2}											{	fprintf(yyout, " and");			}
+<SUB>([ ]and){2}					{	fprintf(yyout, " and");		}
 
-<SUB>[ ]*\n[ ]*												{	fprintf(yyout, " "); 			}
+<SUB>[ ]*\n[ ]*						{	fprintf(yyout, " "); 		}
 
-<SUB>[ ]+													{	fprintf(yyout, " ");			}
+<SUB>[ ]+						{	fprintf(yyout, " ");		}
 
 
-<*>.|\n														{	fprintf(yyout, "%s", yytext);	}
+<*>.|\n							{	fprintf(yyout, "%s", yytext);	}
 %%
 
 int main(int argc, char** argv) {
