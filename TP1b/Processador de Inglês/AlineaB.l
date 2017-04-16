@@ -5,6 +5,7 @@
     #include <stdio.h>
 
     GTree * verbos;
+
 %}
 
 %option noyywrap
@@ -84,19 +85,30 @@ void criar_HTML() {
 
 }
 
+int compareInt (gconstpointer a, gconstpointer b) {
+    int *aa = (int *)a;
+    int *bb = (int *)b;
+    int r;
+    if (*aa == *bb) {
+        return 0;
+    } else {
+        return (*aa - *bb);
+    }
+}
+
 int main (int argc, char* argv[]) {
-    verbos = g_tree_new((GCompareFunc)strcmp);
+    verbos = g_tree_new((GCompareFunc)compareInt);
     char * verbo;
     char * buffer;
     size_t len;
-    int * j;
+    
     
     FILE * vrb = fopen("verbos.txt","r");
     int read;
     while((read = getline(&buffer,&len,vrb)) != -1){
             buffer[strlen(buffer) - 1]='\0';
             verbo = strdup(buffer);
-            j = (int *)malloc(sizeof(int));
+            gint* j = g_slice_alloc(sizeof(gint));
             *j = 0;
             g_tree_insert(verbos,verbo,j);
     }
