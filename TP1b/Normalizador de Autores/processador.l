@@ -18,6 +18,7 @@
 	char * nomesLinha[128];
 	int i = 0;
 	int n = 0;
+	gpointer aux = NULL;
 
 <INITIAL>author\ =\ \{   {
 	BEGIN NOME;
@@ -45,7 +46,13 @@
 		if (strcmp(nomesLinha[j],recebido) == 0) {
 			for (int k = 0; k <= n; k++) {
 				if (k != j) {
-					g_tree_insert(nomesTree, nomesLinha[k], NULL);
+					if ((aux = g_tree_lookup(nomesTree,nomesLinha[k])) != NULL) {
+        				(*(int *)aux)++;
+    				} else {
+						int *j = (int *)malloc(sizeof(int));
+						*j = 1;
+						g_tree_insert(nomesTree, nomesLinha[k], j);
+					}
 				}
 			}
 			j = n+1; //Para sair do ciclo
@@ -77,7 +84,12 @@
 
 gboolean print_name(gpointer k, gpointer v, gpointer d) {
 	fprintf(yyout,"\tColaborador%d [label=\"%s\"];\n",counter,k);
-	fprintf(yyout,"\tAutor -> Colaborador%d [label=\"Colabora\"];\n",counter);
+	int vezes = *(int *)v;
+	if (vezes > 1) {
+		fprintf(yyout,"\tAutor -> Colaborador%d [label=\"Colaborou %d vezes\"];\n", counter, vezes);
+	} else {
+		fprintf(yyout,"\tAutor -> Colaborador%d [label=\"Colaborou %d vez\"];\n", counter, vezes);
+	}
 	counter++;
 	return FALSE;
 }
