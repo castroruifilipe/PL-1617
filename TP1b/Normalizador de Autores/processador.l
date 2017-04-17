@@ -60,7 +60,13 @@
 	i++;
 }
 
-<NOME>\ [A-Z].    {
+
+<NOME>\ ?[a-zA-Zá-úãõÁ-ÚâêôÂÊÔç]+\.?	{
+	nome[i] = strdup(yytext);
+	i++; 
+}
+
+<NOME>\ [0-9]+	{
 	nome[i] = strdup(yytext);
 	i++; 
 }
