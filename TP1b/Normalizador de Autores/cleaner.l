@@ -8,13 +8,13 @@
 %%
 <INITIAL>(?i:author|editor)[ ]*=[ ]*\{[ ]*\},\n		{	;				}
 
-<INITIAL>(?i:author)[ ]*=[ ]*(\{|\")[ ]*    		{	fprintf(yyout, "author = {");
+<INITIAL>(?i:author)[ ]*=[ ]*(\{|\"){1,}[ ]*    		{	fprintf(yyout, "author = {");
 								BEGIN SUB;			}
 
-<INITIAL>(?i:editor)[ ]*=[ ]*(\{|\")[ ]*  		{	fprintf(yyout, "editor = {");
+<INITIAL>(?i:editor)[ ]*=[ ]*(\{|\"){1,}[ ]*  		{	fprintf(yyout, "editor = {");
 								BEGIN SUB;			}
 
-<SUB>[ ]*(\}|\"),   					{	fprintf(yyout, "},");
+<SUB>[ ]*(\}|\"){1,},   					{	fprintf(yyout, "},");
 								BEGIN INITIAL;			}
 
 <SUB>([ ]and){2}					{	fprintf(yyout, " and");		}
