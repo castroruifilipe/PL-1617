@@ -1,5 +1,5 @@
 compilador: lex.yy.c y.tab.c
-	gcc y.tab.c -o compilador
+	gcc -g `pkg-config --cflags --libs glib-2.0` y.tab.c -o compilador
 
 y.tab.c: compilador.y
 	yacc -d -v compilador.y
