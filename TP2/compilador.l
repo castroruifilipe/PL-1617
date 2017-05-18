@@ -21,7 +21,7 @@
 
 (?i:funcao)							{	return FUNCAO;		}
 
-(?i:var)							{	return VAR;			}
+(?i:int)							{	return INT;			}
 
 [-]?[0-9]+							{	yylval.valString = strdup(yytext);
 										return VALOR;						}
