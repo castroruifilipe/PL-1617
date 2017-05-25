@@ -1,8 +1,11 @@
+INT a;
+
 MAIN {
-        int a;
         int b;
-        a = 40;
-        print "Valor de a: ";
+        print "Valor de a: \n";
         read a;
-        print a;
+        print "Valor de b: \n";
+        read b;
+        print "a + b = "
+        print a+b;
 }

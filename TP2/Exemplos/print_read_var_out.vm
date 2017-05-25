@@ -1,0 +1,19 @@
+pushi 0
+pushi 0
+start
+pushi 0
+pushs "Valor de a: "
+writes
+read
+atoi
+storeg 1
+pushs "Valor de b: "
+writes
+read
+atoi
+storel 0
+pushg 1
+pushl 0
+add
+writei
+stop

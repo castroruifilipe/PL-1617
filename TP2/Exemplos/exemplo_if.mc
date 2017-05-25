@@ -1,10 +1,16 @@
+INT x;
+x = 4;
+
 MAIN {
-	INT x;
-	x = 3;
+	INT y;
+	
+	print "Insira uma valor: \n";
+    read y;
+	
 	IF (x>3) {
-		PRINT "Funcionou";
+		PRINT "É Maior";
 	}
 	ELSE {
-		PRINT "Fodeu";
+		PRINT "É menor";
 	}
 }
