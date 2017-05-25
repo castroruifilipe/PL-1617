@@ -1,0 +1,17 @@
+pushi 0
+pushi 0
+start
+pushi 3
+storeg 1
+pushg 1
+pushi 3
+inf
+jz else_0
+pushs "Funcionou"
+writes
+jz fim_if_0: 
+else_0:
+pushs "Fodeu"
+writes
+fim_if_0: 
+stop

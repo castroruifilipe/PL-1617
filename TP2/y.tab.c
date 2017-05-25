@@ -124,7 +124,7 @@
 	int count = 1;
 	int local = 0;
 
-	
+	int countCond = 0;
 
 
 
@@ -475,12 +475,12 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    44,    44,    49,    50,    53,    57,    61,    69,    70,
-      73,    76,    77,    80,    92,   109,   128,   129,   133,   134,
-     137,   138,   139,   140,   141,   144,   147,   152,   155,   156,
-     157,   158,   159,   160,   161,   164,   165,   166,   167,   170,
-     171,   172,   173,   174,   177,   178,   179,   180,   183,   196,
-     216
+       0,    43,    43,    48,    49,    52,    56,    60,    68,    69,
+      72,    75,    76,    79,    91,   108,   127,   128,   132,   133,
+     136,   137,   143,   152,   160,   163,   166,   171,   174,   175,
+     176,   177,   178,   179,   180,   183,   184,   185,   186,   189,
+     190,   191,   192,   193,   196,   197,   198,   199,   202,   215,
+     235
 };
 #endif
 
@@ -1465,52 +1465,52 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 44 "compilador.y"
+#line 43 "compilador.y"
     {	asprintf(&(yyval.valString), "%s%s", (yyvsp[(2) - (2)].valString), (yyvsp[(1) - (2)].valString));
-															printf("%s", (yyval.valString));			 	}
+											printf("%s", (yyval.valString));			 	}
     break;
 
   case 4:
-#line 50 "compilador.y"
+#line 49 "compilador.y"
     {	(yyval.valString) = "";	}
     break;
 
   case 7:
-#line 61 "compilador.y"
+#line 60 "compilador.y"
     {	asprintf(&(yyval.valString), "pushi 0\n"
-																		  "%s"
-																		  "start\n"
-																		  "%s"
-																		  "stop\n", (yyvsp[(3) - (5)].valString), (yyvsp[(4) - (5)].valString));	}
+																  "%s"
+																  "start\n"
+																  "%s"
+																  "stop\n", (yyvsp[(3) - (5)].valString), (yyvsp[(4) - (5)].valString));	}
     break;
 
   case 8:
-#line 69 "compilador.y"
+#line 68 "compilador.y"
     {	asprintf(&(yyval.valString), "%s%s", (yyvsp[(1) - (2)].valString), (yyvsp[(2) - (2)].valString));	}
     break;
 
   case 9:
-#line 70 "compilador.y"
+#line 69 "compilador.y"
     {	(yyval.valString) = "";	}
     break;
 
   case 10:
-#line 73 "compilador.y"
+#line 72 "compilador.y"
     {	(yyval.valString) = (yyvsp[(2) - (3)].valString);	}
     break;
 
   case 11:
-#line 76 "compilador.y"
+#line 75 "compilador.y"
     {	(yyval.valString) = (yyvsp[(1) - (1)].valString);	}
     break;
 
   case 12:
-#line 77 "compilador.y"
+#line 76 "compilador.y"
     {	asprintf(&(yyval.valString), "%s%s", (yyvsp[(1) - (3)].valString), (yyvsp[(3) - (3)].valString));	}
     break;
 
   case 13:
-#line 80 "compilador.y"
+#line 79 "compilador.y"
     {	if (g_tree_lookup(designacoes, (yyvsp[(1) - (2)].valString)) != NULL) {
 																asprintf(&erro, "Variável %s já declarada", (yyvsp[(1) - (2)].valString));
 																yyerror(erro);
@@ -1520,13 +1520,13 @@ yyreduce:
 																e -> colunas = 0;
 																g_tree_insert(designacoes, (yyvsp[(1) - (2)].valString), e);
 																count++;
-																asprintf(&(yyval.valString), "pushi %d\n", (yyvsp[(2) - (2)].valInt));
+																asprintf(&(yyval.valString), "%s", (yyvsp[(2) - (2)].valString));
 															}
 														}
     break;
 
   case 14:
-#line 92 "compilador.y"
+#line 91 "compilador.y"
     {	if (g_tree_lookup(designacoes, (yyvsp[(1) - (4)].valString)) != NULL) {
 																asprintf(&erro, "Variável %s já declarada", (yyvsp[(1) - (4)].valString));
 																yyerror(erro);
@@ -1547,7 +1547,7 @@ yyreduce:
     break;
 
   case 15:
-#line 109 "compilador.y"
+#line 108 "compilador.y"
     {	if (g_tree_lookup(designacoes, (yyvsp[(1) - (7)].valString)) != NULL) {
 																asprintf(&erro, "Variável %s já declarada", (yyvsp[(1) - (7)].valString));
 																yyerror(erro);
@@ -1568,46 +1568,81 @@ yyreduce:
     break;
 
   case 16:
-#line 128 "compilador.y"
-    {	(yyval.valInt) = atoi((yyvsp[(2) - (2)].valString));	}
+#line 127 "compilador.y"
+    {	(yyval.valString) = (yyvsp[(2) - (2)].valString);	}
     break;
 
   case 17:
-#line 129 "compilador.y"
-    {	(yyval.valInt) = 0;	}
+#line 128 "compilador.y"
+    {	(yyval.valString) = "pushi 0\n";	}
     break;
 
   case 18:
-#line 133 "compilador.y"
+#line 132 "compilador.y"
     {	asprintf(&(yyval.valString), "%s%s", (yyvsp[(1) - (2)].valString), (yyvsp[(2) - (2)].valString));	}
     break;
 
   case 19:
-#line 134 "compilador.y"
+#line 133 "compilador.y"
     {	(yyval.valString) = "";	}
     break;
 
   case 20:
-#line 137 "compilador.y"
+#line 136 "compilador.y"
     {	asprintf(&(yyval.valString), "%s%s%s", (yyvsp[(1) - (4)].infoV).prep_atribuicoes, (yyvsp[(3) - (4)].valString), (yyvsp[(1) - (4)].infoV).atribuicoes);	}
     break;
 
+  case 21:
+#line 137 "compilador.y"
+    {	asprintf(&(yyval.valString), "%s"
+		  																					  "jz fim_if_%d\n"
+																							  "%s"
+																							  "fim_if_%d: \n", (yyvsp[(3) - (7)].valString), countCond, (yyvsp[(6) - (7)].valString), countCond);
+																				countCond++;
+																			}
+    break;
+
+  case 22:
+#line 143 "compilador.y"
+    {	asprintf(&(yyval.valString), "%s"
+		  																					  "jz else_%d\n"
+																							  "%s"
+																							  "jz fim_if_%d: \n"
+																							  "else_%d:\n"
+																							  "%s"
+																							  "fim_if_%d: \n", (yyvsp[(3) - (11)].valString), countCond, (yyvsp[(6) - (11)].valString), countCond, countCond, (yyvsp[(10) - (11)].valString), countCond);
+																				countCond++;
+																			}
+    break;
+
+  case 23:
+#line 152 "compilador.y"
+    {	asprintf(&(yyval.valString), "while_%d: \n"
+		  																					  "%s"
+																							  "jz fim_while_%d\n"
+		  																					  "%s"
+																							  "jump while_%d\n"
+																							  "fim_while_%d: \n", countCond, (yyvsp[(3) - (7)].valString), countCond, (yyvsp[(6) - (7)].valString), countCond, countCond);
+																				countCond++;
+																			}
+    break;
+
   case 24:
-#line 141 "compilador.y"
+#line 160 "compilador.y"
     {	asprintf(&(yyval.valString), "%s"
 		  																					  "writei\n", (yyvsp[(2) - (3)].valString));
 																			}
     break;
 
   case 25:
-#line 144 "compilador.y"
+#line 163 "compilador.y"
     {	asprintf(&(yyval.valString), "pushs %s\n"
 		  																					  "writes\n", (yyvsp[(2) - (3)].valString));
 																			}
     break;
 
   case 26:
-#line 147 "compilador.y"
+#line 166 "compilador.y"
     {	asprintf(&(yyval.valString), "%s"
 		  																					  "read\n"
 																							  "atoi\n"
@@ -1616,97 +1651,97 @@ yyreduce:
     break;
 
   case 28:
-#line 155 "compilador.y"
+#line 174 "compilador.y"
     {	asprintf(&(yyval.valString), "%s%ssupeq\n", (yyvsp[(1) - (4)].valString), (yyvsp[(4) - (4)].valString));	}
     break;
 
   case 29:
-#line 156 "compilador.y"
+#line 175 "compilador.y"
     {	asprintf(&(yyval.valString), "%s%sinfeq\n", (yyvsp[(1) - (4)].valString), (yyvsp[(4) - (4)].valString));	}
     break;
 
   case 30:
-#line 157 "compilador.y"
+#line 176 "compilador.y"
     {	asprintf(&(yyval.valString), "%s%sequal\n", (yyvsp[(1) - (4)].valString), (yyvsp[(4) - (4)].valString));	}
     break;
 
   case 31:
-#line 158 "compilador.y"
+#line 177 "compilador.y"
     {	asprintf(&(yyval.valString), "%s%sequal\nnot\n", (yyvsp[(1) - (4)].valString), (yyvsp[(4) - (4)].valString));	}
     break;
 
   case 32:
-#line 159 "compilador.y"
-    {	asprintf(&(yyval.valString), "%s%ssup\n", (yyvsp[(1) - (3)].valString), (yyvsp[(3) - (3)].valString));	}
-    break;
-
-  case 33:
-#line 160 "compilador.y"
+#line 178 "compilador.y"
     {	asprintf(&(yyval.valString), "%s%sinf\n", (yyvsp[(1) - (3)].valString), (yyvsp[(3) - (3)].valString));	}
     break;
 
+  case 33:
+#line 179 "compilador.y"
+    {	asprintf(&(yyval.valString), "%s%ssup\n", (yyvsp[(1) - (3)].valString), (yyvsp[(3) - (3)].valString));	}
+    break;
+
   case 35:
-#line 164 "compilador.y"
+#line 183 "compilador.y"
     {	(yyval.valString) = (yyvsp[(1) - (1)].valString);	}
     break;
 
   case 36:
-#line 165 "compilador.y"
+#line 184 "compilador.y"
     {	asprintf(&(yyval.valString), "%s%sadd\n", (yyvsp[(1) - (3)].valString), (yyvsp[(3) - (3)].valString));	}
     break;
 
   case 37:
-#line 166 "compilador.y"
+#line 185 "compilador.y"
     {	asprintf(&(yyval.valString), "%s%ssub\n", (yyvsp[(1) - (3)].valString), (yyvsp[(3) - (3)].valString));	}
     break;
 
   case 38:
-#line 167 "compilador.y"
+#line 186 "compilador.y"
     {	asprintf(&(yyval.valString), "%s%sadd\n", (yyvsp[(1) - (3)].valString), (yyvsp[(3) - (3)].valString));	}
     break;
 
   case 39:
-#line 170 "compilador.y"
+#line 189 "compilador.y"
     {	(yyval.valString) = (yyvsp[(1) - (1)].valString);	}
     break;
 
   case 40:
-#line 171 "compilador.y"
+#line 190 "compilador.y"
     {	asprintf(&(yyval.valString), "%s%smul\n", (yyvsp[(1) - (3)].valString), (yyvsp[(3) - (3)].valString));	}
     break;
 
   case 41:
-#line 172 "compilador.y"
+#line 191 "compilador.y"
     {	asprintf(&(yyval.valString), "%s%sdiv\n", (yyvsp[(1) - (3)].valString), (yyvsp[(3) - (3)].valString));	}
     break;
 
   case 42:
-#line 173 "compilador.y"
+#line 192 "compilador.y"
     {	asprintf(&(yyval.valString), "%s%smod\n", (yyvsp[(1) - (3)].valString), (yyvsp[(3) - (3)].valString));	}
     break;
 
   case 43:
-#line 174 "compilador.y"
+#line 193 "compilador.y"
     {	asprintf(&(yyval.valString), "%s%smul\n", (yyvsp[(1) - (3)].valString), (yyvsp[(3) - (3)].valString));	}
     break;
 
   case 44:
-#line 177 "compilador.y"
+#line 196 "compilador.y"
     {	asprintf(&(yyval.valString), "pushi %s\n", (yyvsp[(1) - (1)].valString));	}
     break;
 
   case 45:
-#line 178 "compilador.y"
+#line 197 "compilador.y"
     {	(yyval.valString) = (yyvsp[(1) - (1)].infoV).instrucoes;	}
     break;
 
   case 46:
-#line 179 "compilador.y"
+#line 198 "compilador.y"
     {	(yyval.valString) = (yyvsp[(2) - (3)].valString);	}
     break;
 
   case 48:
-#line 183 "compilador.y"
+#line 202 "compilador.y"
     {	if ((aux = (Endereco)g_tree_lookup(designacoes, (yyvsp[(1) - (1)].valString))) != NULL) {
 														if (local == 0) {
 															asprintf(&(yyval.infoV).instrucoes, "pushg %d\n", aux->indice);
@@ -1723,7 +1758,7 @@ yyreduce:
     break;
 
   case 49:
-#line 196 "compilador.y"
+#line 215 "compilador.y"
     {	if ((aux = (Endereco)g_tree_lookup(designacoes, (yyvsp[(1) - (4)].valString))) != NULL) {
 														if (local == 0) {
 															asprintf(&(yyval.infoV).instrucoes, "pushgp\n"
@@ -1747,7 +1782,7 @@ yyreduce:
     break;
 
   case 50:
-#line 216 "compilador.y"
+#line 235 "compilador.y"
     {	if ((aux = (Endereco)g_tree_lookup(designacoes, (yyvsp[(1) - (7)].valString))) != NULL) {
 														if (local == 0) {
 															asprintf(&(yyval.infoV).instrucoes, "pushgp\n"
@@ -1780,7 +1815,7 @@ yyreduce:
 
 
 /* Line 1267 of yacc.c.  */
-#line 1784 "y.tab.c"
+#line 1819 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1994,7 +2029,7 @@ yyreturn:
 }
 
 
-#line 245 "compilador.y"
+#line 264 "compilador.y"
 
 
 #include "lex.yy.c"

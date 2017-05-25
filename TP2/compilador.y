@@ -11,20 +11,20 @@
 		char *prep_atribuicoes;
 	} InfoVar;
 
-	typedef struct endereco {
+	typedef struct nodo {
 		int indice;
 		int colunas;
-	} *Endereco;
+	} *Nodo;
 
-	GTree *designacoes;
+	GTree *funcoes;
 	char *erro;
-	Endereco aux = NULL;
-	Endereco e;
-	int count = 1;
+	Nodo aux = NULL;
+	Nodo e;
+	int count = 0;
 	int local = 0;
-
-	
-
+	int countCond = 0;
+	int *encontrando;
+	char *funcaoAtual;
 %}
 
 %union {
@@ -35,8 +35,7 @@
 
 %token <valString> MAIN IF ELSE WHILE READ PRINT RETURN FUNCAO INT VALOR DESIGNACAO STRING
 
-%type <valString> Programa MainFunc Funcoes Instrucoes Instrucao Decls Decl DeclsVar DeclVar Expr Termo Fator Cond
-%type <valInt> Init
+%type <valString> Programa MainFunc Funcoes Instrucoes Instrucao Decls Decl DeclsVar DeclVar Init Expr Termo Fator Cond
 %type <infoV> Var
 
 
@@ -50,19 +49,35 @@ Funcoes : Funcoes Funcao
 	  	|								{	$$ = "";	}
 	  	;
 	  
-Funcao : FUNCAO DESIGNACAO '(' ')'
-	     '{' Decls Instrucoes Return '}'
+Funcao : FUNCAO DESIGNACAO '(' ')'			{	count = 0;
+												local = 1;
+												funcaoAtual = strdup($2);
+												GTree *variaveis = g_tree_new((GCompareFunc)strcmp);
+												g_tree_insert(funcoes, $2, variaveis);
+											}
+	     '{' Decls Instrucoes Return '}'	{	//asprintf(&$$, )
+
+		 									}
 	   ;
 
-Return : RETURN Expr ';'
+Return : RETURN Expr ';'	{	asprintf(&$$, "%s"
+											  "storeg 0\n"
+											  "return", $2);
+							}
 	   ;
 
 
-MainFunc : MAIN '{' Decls Instrucoes '}'		{	asprintf(&$$, "pushi 0\n"
-																  "%s"
-																  "start\n"
-																  "%s"
-																  "stop\n", $3, $4);	}
+MainFunc : MAIN '{' Decls Instrucoes '}'	{	Gtree *variaveis = g_tree_new((GCompareFunc)strcmp);
+												g_tree_insert(funcoes, "MAIN", variaveis);
+												count = 1;
+												local = 0;
+												funcaoAtual = strdup("MAIN");
+												asprintf(&$$, "pushi 0\n"
+															  "%s"
+															  "start\n"
+															  "%s"
+															  "stop\n", $3, $4);
+											}
 	     ;
 
 
@@ -77,35 +92,71 @@ DeclsVar : DeclVar						{	$$ = $1;	}
 	     | DeclVar ',' DeclsVar			{	asprintf(&$$, "%s%s", $1, $3);	}
 	     ;
 
-DeclVar : DESIGNACAO Init								{	if (g_tree_lookup(designacoes, $1) != NULL) {
-																asprintf(&erro, "Variável %s já declarada", $1);
-																yyerror(erro);
-															} else {
-																e = (Endereco)malloc(sizeof(struct endereco));
-																e -> indice = count;
-																e -> colunas = 0;
-																g_tree_insert(designacoes, $1, e);
-																count++;
-																asprintf(&$$, "pushi %d\n", $2);
-															}
-														}
-	    | DESIGNACAO '[' VALOR ']'						{	if (g_tree_lookup(designacoes, $1) != NULL) {
-																asprintf(&erro, "Variável %s já declarada", $1);
-																yyerror(erro);
-															} else {
-																if (atoi($3) < 1) {
-																	asprintf(&erro, "Dimensão %s do array %s inválida", $3, $1);
+DeclVar : DESIGNACAO Init								{	if (local == 0) { 					// na MAIN
+																g_tree_foreach(funcoes, existe, encontrado);
+																if (*encontrado == 1) {
+																	asprintf(&erro, "Variável %s já declarada numa função", $1);
 																	yyerror(erro);
 																} else {
-																	e = (Endereco)malloc(sizeof(struct endereco));
-																	e -> indice = count;
-																	e -> colunas = 0;
-																	g_tree_insert(designacoes, $1, e);
+																	Gtree *variaveis = (Gtree *)g_tree_lookup(funcoes, "MAIN");
+																	Nodo n = (Nodo)malloc(sizeof(struct nodo));
+																	n->indice = count;
+																	n->colunas = 0;
+																	g_tree_insert(variaveis, $1, n);
+																	count++;
+																}
+																*encontrado = 0;
+															} else {
+																Gtree *variaveis = (Gtree *)g_tree_lookup(funcoes, funcaoAtual);
+																if (g_tree_lookup(variaveis, $1)) == NULL) {
+																	asprintf(&erro, "Variável %s já declarada na função %s", $1, funcaoAtual);
+																	yyerror(erro);
+																} else {
+																	Nodo n = (Nodo)malloc(sizeof(struct nodo));
+																	n->indice = count;
+																	n->colunas = 0;
+																	g_tree_insert(variaveis, $1, n);
+																	count++;
+																}
+															}
+														}
+	    | DESIGNACAO '[' VALOR ']'						{	if (local == 0) { 					// na MAIN
+																g_tree_foreach(funcoes, existe, encontrado);
+																if (*encontrado == 1) {
+																	asprintf(&erro, "Variável %s já declarada numa função", $1);
+																	yyerror(erro);
+																} else {
+																	if (atoi($3) < 1) {
+																		asprintf(&erro, "Dimensão %s do array %s inválida", $3, $1);
+																		yyerror(erro);	
+																	} else {
+																		Gtree *variaveis = (Gtree *)g_tree_lookup(funcoes, "MAIN");
+																		Nodo n = (Nodo)malloc(sizeof(struct nodo));
+																		n->indice = count;
+																		n->colunas = 0;
+																		g_tree_insert(variaveis, $1, n);
+																		count += atoi($3);
+																		asprintf(&$$, "pushn %s\n", $3);
+																	}
+																}
+																*encontrado = 0;
+															} else {
+																Gtree *variaveis = (Gtree *)g_tree_lookup(funcoes, funcaoAtual);
+																if (g_tree_lookup(variaveis, $1)) == NULL) {
+																	asprintf(&erro, "Variável %s já declarada na função %s", $1, funcaoAtual);
+																	yyerror(erro);
+																} else {
+																	Gtree *variaveis = (Gtree *)g_tree_lookup(funcoes, "MAIN");
+																	Nodo n = (Nodo)malloc(sizeof(struct nodo));
+																	n->indice = count;
+																	n->colunas = 0;
+																	g_tree_insert(variaveis, $1, n);
 																	count += atoi($3);
 																	asprintf(&$$, "pushn %s\n", $3);
 																}
 															}
 														}
+														// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!PARAMOS AQUI!!!!!!!!!!!!!!!
 	    | DESIGNACAO '[' VALOR ']' '[' VALOR ']'		{	if (g_tree_lookup(designacoes, $1) != NULL) {
 																asprintf(&erro, "Variável %s já declarada", $1);
 																yyerror(erro);
@@ -114,9 +165,10 @@ DeclVar : DESIGNACAO Init								{	if (g_tree_lookup(designacoes, $1) != NULL) {
 																	asprintf(&erro, "Dimensões do array bidimensional %s inválidas", $1);
 																	yyerror(erro);
 																} else {
-																	e = (Endereco)malloc(sizeof(struct endereco));
+																	e = (Nodo)malloc(sizeof(struct nodo));
 																	e -> indice = count;
 																	e -> colunas =  atoi($6);
+																	e -> funcao = strdup(funcaoAtual);
 																	g_tree_insert(designacoes, $1, e);
 																	count += (atoi($3) * atoi($6));
 																	asprintf(&$$, "pushn %d\n", atoi($3) * atoi($6));
@@ -125,8 +177,8 @@ DeclVar : DESIGNACAO Init								{	if (g_tree_lookup(designacoes, $1) != NULL) {
 														}
 	    ;
 
-Init : '=' Expr			{	$$ = atoi($2);	}
-     |					{	$$ = 0;	}
+Init : '=' Expr			{	$$ = $2;	}
+     |					{	$$ = "pushi 0\n";	}
      ;
 
 
@@ -135,9 +187,29 @@ Instrucoes : Instrucoes Instrucao						{	asprintf(&$$, "%s%s", $1, $2);	}
 	       ;
 
 Instrucao : Var '=' Expr ';'												{	asprintf(&$$, "%s%s%s", $1.prep_atribuicoes, $3, $1.atribuicoes);	}
-	      | IF '(' Cond ')' '{' Instrucoes '}'
-	      | IF '(' Cond ')' '{' Instrucoes '}' ELSE '{' Instrucoes '}'
-	      | WHILE '(' Cond ')' '{' Instrucoes '}'
+	      | IF '(' Cond ')' '{' Instrucoes '}'								{	asprintf(&$$, "%s"
+		  																					  "jz fim_if_%d\n"
+																							  "%s"
+																							  "fim_if_%d: \n", $3, countCond, $6, countCond);
+																				countCond++;
+																			}
+	      | IF '(' Cond ')' '{' Instrucoes '}' ELSE '{' Instrucoes '}'		{	asprintf(&$$, "%s"
+		  																					  "jz else_%d\n"
+																							  "%s"
+																							  "jz fim_if_%d: \n"
+																							  "else_%d:\n"
+																							  "%s"
+																							  "fim_if_%d: \n", $3, countCond, $6, countCond, countCond, $10, countCond);
+																				countCond++;
+																			}
+	      | WHILE '(' Cond ')' '{' Instrucoes '}'							{	asprintf(&$$, "while_%d: \n"
+		  																					  "%s"
+																							  "jz fim_while_%d\n"
+		  																					  "%s"
+																							  "jump while_%d\n"
+																							  "fim_while_%d: \n", countCond, $3, countCond, $6, countCond, countCond);
+																				countCond++;
+																			}
 	      | PRINT Expr ';'													{	asprintf(&$$, "%s"
 		  																					  "writei\n", $2);
 																			}								
@@ -149,15 +221,17 @@ Instrucao : Var '=' Expr ';'												{	asprintf(&$$, "%s%s%s", $1.prep_atribu
 																							  "atoi\n"
 																							  "%s", $2.prep_atribuicoes, $2.atribuicoes);
 																			}
-	      | DESIGNACAO '(' ')' ';'
+	      | DESIGNACAO '(' ')' ';'											{	asprintf(&$$, "pusha func_%s\n"            //   nop??
+		  																					  "call\n", $1);
+																			}
 	      ;
 
 Cond : Expr '>' '=' Expr		{	asprintf(&$$, "%s%ssupeq\n", $1, $4);	}
      | Expr '<' '=' Expr		{	asprintf(&$$, "%s%sinfeq\n", $1, $4);	}
      | Expr '=' '=' Expr		{	asprintf(&$$, "%s%sequal\n", $1, $4);	}
      | Expr '!' '=' Expr		{	asprintf(&$$, "%s%sequal\nnot\n", $1, $4);	}
-     | Expr '<' Expr			{	asprintf(&$$, "%s%ssup\n", $1, $3);	}
-     | Expr '>' Expr			{	asprintf(&$$, "%s%sinf\n", $1, $3);	}
+     | Expr '<' Expr			{	asprintf(&$$, "%s%sinf\n", $1, $3);	}
+     | Expr '>' Expr			{	asprintf(&$$, "%s%ssup\n", $1, $3);	}
      | Expr
      ;
 
@@ -180,20 +254,22 @@ Fator : VALOR					{	asprintf(&$$, "pushi %s\n", $1);	}
 	  | DESIGNACAO '(' ')'
 	  ;
 
-Var : DESIGNACAO								{	if ((aux = (Endereco)g_tree_lookup(designacoes, $1)) != NULL) {
+Var : DESIGNACAO								{	if ((aux = (Nodo)g_tree_lookup(designacoes, $1)) != NULL) {
 														if (local == 0) {
 															asprintf(&$$.instrucoes, "pushg %d\n", aux->indice);
 															asprintf(&$$.atribuicoes, "storeg %d\n", aux->indice);
 															$$.prep_atribuicoes = "";
 														} else {
-															// ????????????????????????????????????????????????????
+															asprintf(&$$.instrucoes, "pushl %d\n", aux->indice);
+															asprintf(&$$.atribuicoes, "storeg %d\n", aux->indice);
+															$$.prep_atribuicoes = "";
 														}
 													} else {
 														asprintf(&erro, "Variável %s não declarada", $1);
 														yyerror(erro);
 													}
 												}
-    | DESIGNACAO '[' Expr ']'					{	if ((aux = (Endereco)g_tree_lookup(designacoes, $1)) != NULL) {
+    | DESIGNACAO '[' Expr ']'					{	if ((aux = (Nodo)g_tree_lookup(designacoes, $1)) != NULL) {
 														if (local == 0) {
 															asprintf(&$$.instrucoes, "pushgp\n"
 																					 "pushi %d\n"
@@ -213,7 +289,7 @@ Var : DESIGNACAO								{	if ((aux = (Endereco)g_tree_lookup(designacoes, $1)) !
 														yyerror(erro);
 													}
 												}
-    | DESIGNACAO '[' Expr ']' '[' Expr ']'		{	if ((aux = (Endereco)g_tree_lookup(designacoes, $1)) != NULL) {
+    | DESIGNACAO '[' Expr ']' '[' Expr ']'		{	if ((aux = (Nodo)g_tree_lookup(designacoes, $1)) != NULL) {
 														if (local == 0) {
 															asprintf(&$$.instrucoes, "pushgp\n"
 																					 "pushi %d\n"
@@ -244,6 +320,14 @@ Var : DESIGNACAO								{	if ((aux = (Endereco)g_tree_lookup(designacoes, $1)) !
     ;
 %%
 
+gboolean existe(gpointer key, gpointer value, gpointer data) {
+    Gtree *variaveis = (Gtree *)value;
+	char *variavel = (char *)data;
+	if (g_tree_lookup(variaveis, variavel) != NULL) {
+		encontrado = 1;
+	}
+}
+
 #include "lex.yy.c"
 
 int yyerror (char *s) {
@@ -252,6 +336,7 @@ int yyerror (char *s) {
 }
 
 int main() {
+	*encontrado = 0;
 	designacoes = g_tree_new((GCompareFunc)strcmp);
 	yyparse();
 	return 0;
