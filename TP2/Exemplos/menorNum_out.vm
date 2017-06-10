@@ -1,0 +1,43 @@
+pushi 0
+pushi 0
+start
+pushi 0
+pushi 0
+pushs "Insira quantos quer ler: \n"
+writes
+read
+atoi
+storeg 1
+pushs "De seguida insira os valores"
+writes
+read
+atoi
+storel 0
+pushl 0
+storel 1
+while_1: 
+pushg 1
+pushi 1
+sup
+jz fim_while_1
+read
+atoi
+storel 0
+pushl 0
+pushl 1
+inf
+jz fim_if_0
+pushl 0
+storel 1
+fim_if_0: 
+pushg 1
+pushi 1
+sub
+storeg 1
+jump while_1
+fim_while_1: 
+pushs "O menor numero introduzido foi:"
+writes
+pushl 1
+writei
+stop

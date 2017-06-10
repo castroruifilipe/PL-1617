@@ -1,0 +1,33 @@
+pushi 0
+pushi 5
+start
+pushi 0
+pushi 0
+pushi 0
+pushi 1
+storel 0
+pushs "Insira 1 a 1 os numeros que quer multiplicar"
+writes
+while_0: 
+pushl 2
+pushg 1
+inf
+jz fim_while_0
+read
+atoi
+storel 1
+pushl 0
+pushl 1
+mul
+storel 0
+pushl 2
+pushi 1
+add
+storel 2
+jump while_0
+fim_while_0: 
+pushs "O produtorio é: "
+writes
+pushl 0
+writei
+stop

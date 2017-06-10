@@ -1,0 +1,23 @@
+pushi 0
+pushi 0
+pushi 4
+storeg 1
+start
+pushi 0
+pushs "Insira uma valor: \n"
+writes
+read
+atoi
+storel 0
+pushg 1
+pushi 3
+sup
+jz else_0
+pushs "É Maior"
+writes
+jump fim_if_0: 
+else_0:
+pushs "É menor"
+writes
+fim_if_0: 
+stop

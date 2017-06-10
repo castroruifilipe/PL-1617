@@ -1,0 +1,23 @@
+pushi 0
+pushi 3
+pushi 0
+pushi 9
+storeg 2
+start
+pushi 0
+pushi 0
+storel 0
+while_0: 
+pushg 1
+pushl 0
+sup
+jz fim_while_0
+pushs "Nova iteracao"
+writes
+pushg 1
+pushi 1
+sub
+storeg 1
+jump while_0
+fim_while_0: 
+stop

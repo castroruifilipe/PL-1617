@@ -1,0 +1,46 @@
+pushi 0
+start
+pushi 0
+pushi 0
+pushi 0
+pushi 0
+pushs "Insira um valor: \n"
+writes
+read
+atoi
+storel 0
+pushs "Insira um valor: \n"
+writes
+read
+atoi
+storel 1
+pushs "Insira um valor: \n"
+writes
+read
+atoi
+storel 2
+pushs "Insira um valor: \n"
+writes
+read
+atoi
+storel 3
+pushl 0
+pushl 1
+equal
+pushl 1
+pushl 2
+equal
+mul
+pushl 2
+pushl 3
+equal
+mul
+jz else_0
+pushs "É um Quadrado"
+writes
+jump fim_if_0: 
+else_0:
+pushs "Os lados não correspondem a um quadrado"
+writes
+fim_if_0: 
+stop

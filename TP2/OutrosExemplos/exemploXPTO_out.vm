@@ -1,0 +1,75 @@
+pushi 0
+pushn 3
+start
+pushn 3
+pushi 0
+pushi 0
+pushi 0
+pushi 0
+storel 5
+while_0: 
+pushl 5
+pushi 3
+inf
+jz fim_while_0
+pushs "Valor de global indice "
+writes
+pushl 5
+writei
+pushs "\n"
+writes
+pushgp
+pushi 1
+padd
+pushl 5
+read
+atoi
+storen
+pushl 3
+pushgp
+pushi 1
+padd
+pushl 5
+loadn
+add
+storel 3
+pushs "Valor de local indice "
+writes
+pushl 5
+writei
+pushs "\n"
+writes
+pushfp
+pushi 0
+padd
+pushl 5
+read
+atoi
+storen
+pushl 4
+pushfp
+pushi 0
+padd
+pushl 5
+loadn
+add
+storel 4
+pushl 5
+pushi 1
+add
+storel 5
+jump while_0
+fim_while_0: 
+pushs "Soma do global = "
+writes
+pushl 3
+writei
+pushs "\n"
+writes
+pushs "Soma do local = "
+writes
+pushl 4
+writei
+pushs "\n"
+writes
+stop

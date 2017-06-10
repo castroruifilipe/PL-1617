@@ -1,0 +1,99 @@
+pushi 0
+pushi 5
+pushn 5
+start
+pushi 0
+pushs "Insira 1 a 1 os 5 numeros que pretende ordenar"
+writes
+while_1: 
+pushl 0
+pushi 5
+inf
+jz fim_while_1
+pushgp
+pushi 2
+padd
+pushl 0
+read
+atoi
+storen
+pushl 0
+pushi 1
+add
+storel 0
+jump while_1
+fim_while_1: 
+pusha func_inverte
+call
+nop
+pushi 0
+storel 0
+while_2: 
+pushl 0
+pushi 5
+inf
+jz fim_while_2
+pushgp
+pushi 2
+padd
+pushl 0
+loadn
+writei
+pushs " -> "
+writes
+pushl 0
+pushi 1
+add
+storel 0
+jump while_2
+fim_while_2: 
+stop
+func_inverte:
+nop
+pushi 0
+pushg 1
+pushi 1
+sub
+pushi 0
+while_0: 
+pushl 0
+pushg 1
+pushi 2
+div
+inf
+jz fim_while_0
+pushgp
+pushi 2
+padd
+pushl 0
+loadn
+storel 2
+pushgp
+pushi 2
+padd
+pushl 0
+pushgp
+pushi 2
+padd
+pushl 1
+loadn
+storen
+pushgp
+pushi 2
+padd
+pushl 1
+pushl 2
+storen
+pushl 0
+pushi 1
+add
+storel 0
+pushl 1
+pushi 1
+sub
+storel 1
+jump while_0
+fim_while_0: 
+pushi 0
+storeg 0
+return
