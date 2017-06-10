@@ -210,7 +210,7 @@ Instrucao : Var '=' Expr ';'												{	asprintf(&$$, "%s%s%s", $1.prep_atribu
 	      | IF '(' Cond ')' '{' Instrucoes '}' ELSE '{' Instrucoes '}'		{	asprintf(&$$, "%s"
 		  																					  "jz else_%d\n"
 																							  "%s"
-																							  "jz fim_if_%d: \n"
+																							  "jump fim_if_%d: \n"
 																							  "else_%d:\n"
 																							  "%s"
 																							  "fim_if_%d: \n", $3, countCond, $6, countCond, countCond, $10, countCond);
