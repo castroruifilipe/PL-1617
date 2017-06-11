@@ -1,4 +1,6 @@
 pushi 0
+pushi 0
+pushi 0
 start
 pushn 4
 pushn 2
@@ -120,7 +122,7 @@ add
 storel 8
 jump while_1
 fim_while_1: 
-pushs "A resultado é: \n"
+pushs "O resultado é: \n"
 writes
 pushs "["
 writes

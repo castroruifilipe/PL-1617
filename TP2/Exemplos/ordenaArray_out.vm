@@ -1,4 +1,6 @@
 pushi 0
+pushi 0
+pushi 0
 pushn 5
 start
 pushi 0
@@ -10,7 +12,7 @@ pushi 5
 inf
 jz fim_while_3
 pushgp
-pushi 1
+pushi 3
 padd
 pushl 0
 read
@@ -33,7 +35,7 @@ pushi 5
 inf
 jz fim_while_4
 pushgp
-pushi 1
+pushi 3
 padd
 pushl 0
 loadn
@@ -70,12 +72,12 @@ pushi 5
 inf
 jz fim_while_1
 pushgp
-pushi 1
+pushi 3
 padd
 pushl 1
 loadn
 pushgp
-pushi 1
+pushi 3
 padd
 pushl 2
 loadn
@@ -91,23 +93,23 @@ storel 1
 jump while_1
 fim_while_1: 
 pushgp
-pushi 1
+pushi 3
 padd
 pushl 0
 loadn
 storel 3
 pushgp
-pushi 1
+pushi 3
 padd
 pushl 0
 pushgp
-pushi 1
+pushi 3
 padd
 pushl 2
 loadn
 storen
 pushgp
-pushi 1
+pushi 3
 padd
 pushl 2
 pushl 3

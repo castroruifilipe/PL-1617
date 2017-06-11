@@ -19,7 +19,7 @@ FUNCAO inverte() {
 
 Main {
     Int i = 0;
-    print "Insira 1 a 1 os 5 numeros que pretende ordenar\n";
+    print "Insira 1 a 1 os 5 numeros que pretende inverter a ordenar\n";
 
     while (i < 5) {
         read array[i];

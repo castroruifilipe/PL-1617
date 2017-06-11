@@ -1,9 +1,11 @@
 pushi 0
+pushi 0
+pushi 0
 pushi 5
 pushn 5
 start
 pushi 0
-pushs "Insira 1 a 1 os 5 numeros que pretende ordenar\n"
+pushs "Insira 1 a 1 os 5 numeros que pretende inverter a ordenar\n"
 writes
 while_1: 
 pushl 0
@@ -11,7 +13,7 @@ pushi 5
 inf
 jz fim_while_1
 pushgp
-pushi 2
+pushi 4
 padd
 pushl 0
 read
@@ -34,7 +36,7 @@ pushi 5
 inf
 jz fim_while_2
 pushgp
-pushi 2
+pushi 4
 padd
 pushl 0
 loadn
@@ -51,35 +53,35 @@ stop
 func_inverte:
 nop
 pushi 0
-pushg 1
+pushg 3
 pushi 1
 sub
 pushi 0
 while_0: 
 pushl 0
-pushg 1
+pushg 3
 pushi 2
 div
 inf
 jz fim_while_0
 pushgp
-pushi 2
+pushi 4
 padd
 pushl 0
 loadn
 storel 2
 pushgp
-pushi 2
+pushi 4
 padd
 pushl 0
 pushgp
-pushi 2
+pushi 4
 padd
 pushl 1
 loadn
 storen
 pushgp
-pushi 2
+pushi 4
 padd
 pushl 1
 pushl 2

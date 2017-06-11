@@ -26,6 +26,7 @@
 	int local;
 	int countCond = 0;
 	char *funcaoAtual;
+	int * auxFuncoes;
 %}
 
 %union {
@@ -42,6 +43,8 @@
 
 %%
 Programa : Decls Instrucoes Funcoes MainFunc		{	asprintf(&$$, "pushi 0\n"
+																	  "pushi 0\n"
+																	  "pushi 0\n"
 																	  "%s%s%s%s", $1, $2, $4, $3);
 														printf("%s", $$);		 	}
 	   	 ;
@@ -57,7 +60,7 @@ Funcao : FUNCAO DESIGNACAO '(' ')'			{	count = 0;
 												funcaoAtual = strdup($2);
 												variaveis = g_tree_new((GCompareFunc)strcmp);
 												int *func = (int *)malloc(sizeof(int));
-												*func = 1;
+												*func = 0;
 												g_tree_insert(funcoes,$2,func);
 											}
 	     '{' Decls Instrucoes Return '}'	{	asprintf(&$$,"func_%s:\n"
@@ -66,6 +69,26 @@ Funcao : FUNCAO DESIGNACAO '(' ')'			{	count = 0;
 															  "%s"
 															  "%s",$2,$7,$8,$9);
 		 									}
+		| FUNCAO DESIGNACAO '('DESIGNACAO')' {	count = 0;
+												local = 1;
+												funcaoAtual = strdup($2);
+												variaveis = g_tree_new((GCompareFunc)strcmp);
+												int *func = (int *)malloc(sizeof(int));
+												*func = 1;
+												g_tree_insert(funcoes,$2,func);
+												Nodo n = (Nodo)malloc(sizeof(struct nodo));
+												n->indice = count;
+												n->colunas = 0;
+												g_tree_insert(variaveis, $4, n);
+												count++;
+		}
+		'{' Decls Instrucoes Return '}'	{	asprintf(&$$,"func_%s:\n"
+															  "nop\n"
+															  "pushg 1\n"
+															  "%s"
+															  "%s"
+															  "%s",$2,$8,$9,$10);
+										}
 	   ;
 
 Return : RETURN Expr ';'	{	asprintf(&$$, "%s"
@@ -235,15 +258,39 @@ Instrucao : Var '=' Expr ';'												{	asprintf(&$$, "%s%s%s", $1.prep_atribu
 																							  "atoi\n"
 																							  "%s", $2.prep_atribuicoes, $2.atribuicoes);
 																			}
-	      | DESIGNACAO '(' ')' ';'											{	if(g_tree_lookup(funcoes,$1) != NULL){
-			  																		asprintf(&$$, "pusha func_%s\n"
-		  																						  "call\n"
-																								  "nop\n", $1);
+	      | DESIGNACAO '(' ')' ';'											{	if((auxFuncoes = (int *)g_tree_lookup(funcoes,$1)) != NULL){
+			  																		if(*auxFuncoes == 0){
+			  																			asprintf(&$$, "pusha func_%s\n"
+		  																							  "call\n"
+																									  "nop\n", $1);
+																					  }
+																					  else {
+																						  asprintf(&erro, "Número de argumentos da função %s inválido", $1);
+																						  yyerror(erro);
+																					  }
 		  																		} else {
 																					asprintf(&erro, "Função %s não declarada", $1);
 																					yyerror(erro);
 									 											}
 																			}
+
+		 | DESIGNACAO '(' Expr ')' ';'										{	if((auxFuncoes = (int *)g_tree_lookup(funcoes,$1)) != NULL){
+			  																		if(*auxFuncoes == 1){
+			  																			asprintf(&$$, "%s"
+																						  			  "pushg 1\n"
+																						  			  "pusha func_%s\n"
+		  																							  "call\n"
+																									  "nop\n", $3, $1);
+																					  }
+																					  else {
+																						  asprintf(&erro, "Número de argumentos da função %s inválido", $1);
+																						  yyerror(erro);
+																					  }
+		  																		} else {
+																					asprintf(&erro, "Função %s não declarada", $1);
+																					yyerror(erro);
+									 											}
+																		 }					
 	      ;
 
 Cond : Expr '>' '=' Expr		{	asprintf(&$$, "%s%ssupeq\n", $1, $4);	}
@@ -271,16 +318,41 @@ Termo : Fator					{	$$ = $1;	}
 Fator : VALOR					{	asprintf(&$$, "pushi %s\n", $1);	}
 	  | Var						{	$$ = $1.instrucoes;	}
 	  | '(' Cond ')'			{	$$ = $2;	}
-	  | DESIGNACAO '(' ')'		{	if(g_tree_lookup(funcoes, $1) != NULL) {
-										asprintf(&$$,"pusha func_%s\n"
-													 "call\n"
-													 "nop\n"
-													 "pushg 0\n",$1);
+	  | DESIGNACAO '(' ')'		{	if((auxFuncoes = (int *)g_tree_lookup(funcoes,$1)) != NULL){
+			  							if(*auxFuncoes == 0){
+											asprintf(&$$,"pusha func_%s\n"
+														 "call\n"
+														 "nop\n"
+														 "pushg 0\n",$1);
+										}
+										else {
+											asprintf(&erro, "Argumento da função %s não é válido", $1);
+											yyerror(erro);
+										}
 	  								} else {
 										asprintf(&erro, "Função %s não declarada", $1);
 										yyerror(erro);
 									  }
 								}
+	  | DESIGNACAO '(' Expr ')' {	if((auxFuncoes = (int *)g_tree_lookup(funcoes,$1)) != NULL){
+			  							if(*auxFuncoes == 1){
+											asprintf(&$$,"%s"
+             											 "storeg 1\n"
+														 "pusha func_%s\n"
+														 "call\n"
+														 "nop\n"
+														 "pushg 0\n",$3,$1);
+										}
+										else {
+											asprintf(&erro, "Argumento da função %s não é válido", $1);
+											yyerror(erro);
+										}
+	  								} else {
+										asprintf(&erro, "Função %s não declarada", $1);
+										yyerror(erro);
+									  }
+
+	  							}
 	  ;
 
 Var : DESIGNACAO								{	if(local == 0) {					// contexto Global
@@ -449,7 +521,7 @@ int yyerror (char *s) {
 int main() {
 	funcaoAtual = strdup("GLOBAL");
 	local = 0;
-	count = 1;
+	count = 3;
 	varGlobais = g_tree_new((GCompareFunc)strcmp);
 	funcoes = g_tree_new((GCompareFunc)strcmp);
 	yyparse();

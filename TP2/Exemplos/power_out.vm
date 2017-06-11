@@ -1,0 +1,34 @@
+pushi 0
+pushi 0
+pushi 0
+start
+pushi 0
+pushi 0
+pushs "Insira um número\n"
+writes
+read
+atoi
+storel 0
+pushl 0
+storeg 1
+pusha func_power
+call
+nop
+pushg 0
+storel 1
+pushs "O quadrado do número é:  "
+writes
+pushl 1
+writei
+stop
+func_power:
+nop
+pushg 1
+pushi 0
+pushl 0
+pushl 0
+mul
+storel 1
+pushl 1
+storeg 0
+return
