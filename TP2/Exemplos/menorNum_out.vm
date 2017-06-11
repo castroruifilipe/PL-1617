@@ -1,7 +1,6 @@
 pushi 0
 pushi 0
 pushi 0
-pushi 0
 start
 pushi 0
 pushi 0
@@ -9,7 +8,7 @@ pushs "Insira quantos quer ler: \n"
 writes
 read
 atoi
-storeg 3
+storeg 2
 pushs "De seguida insira os valores\n"
 writes
 read
@@ -18,7 +17,7 @@ storel 0
 pushl 0
 storel 1
 while_1: 
-pushg 3
+pushg 2
 pushi 1
 sup
 jz fim_while_1
@@ -32,10 +31,10 @@ jz fim_if_0
 pushl 0
 storel 1
 fim_if_0: 
-pushg 3
+pushg 2
 pushi 1
 sub
-storeg 3
+storeg 2
 jump while_1
 fim_while_1: 
 pushs "O menor numero introduzido foi: "

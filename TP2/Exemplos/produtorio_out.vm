@@ -1,6 +1,5 @@
 pushi 0
 pushi 0
-pushi 0
 pushi 5
 start
 pushi 0
@@ -12,7 +11,7 @@ pushs "Insira 1 a 1 os numeros que quer multiplicar\n"
 writes
 while_0: 
 pushl 2
-pushg 3
+pushg 2
 inf
 jz fim_while_0
 read

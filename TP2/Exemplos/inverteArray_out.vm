@@ -1,6 +1,5 @@
 pushi 0
 pushi 0
-pushi 0
 pushi 5
 pushn 5
 start
@@ -13,7 +12,7 @@ pushi 5
 inf
 jz fim_while_1
 pushgp
-pushi 4
+pushi 3
 padd
 pushl 0
 read
@@ -29,7 +28,7 @@ pusha func_inverte
 call
 nop
 pushgp
-pushi 4
+pushi 3
 padd
 pushi 0
 loadn
@@ -44,7 +43,7 @@ jz fim_while_2
 pushs " -> "
 writes
 pushgp
-pushi 4
+pushi 3
 padd
 pushl 0
 loadn
@@ -59,35 +58,35 @@ stop
 func_inverte:
 nop
 pushi 0
-pushg 3
+pushg 2
 pushi 1
 sub
 pushi 0
 while_0: 
 pushl 0
-pushg 3
+pushg 2
 pushi 2
 div
 inf
 jz fim_while_0
 pushgp
-pushi 4
+pushi 3
 padd
 pushl 0
 loadn
 storel 2
 pushgp
-pushi 4
+pushi 3
 padd
 pushl 0
 pushgp
-pushi 4
+pushi 3
 padd
 pushl 1
 loadn
 storen
 pushgp
-pushi 4
+pushi 3
 padd
 pushl 1
 pushl 2

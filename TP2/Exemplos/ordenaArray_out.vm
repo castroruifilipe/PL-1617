@@ -1,6 +1,5 @@
 pushi 0
 pushi 0
-pushi 0
 pushn 5
 start
 pushi 0
@@ -12,7 +11,7 @@ pushi 5
 inf
 jz fim_while_3
 pushgp
-pushi 3
+pushi 2
 padd
 pushl 0
 read
@@ -28,7 +27,7 @@ pusha func_ordena
 call
 nop
 pushgp
-pushi 3
+pushi 2
 padd
 pushi 0
 loadn
@@ -43,7 +42,7 @@ jz fim_while_4
 pushs "   ->   "
 writes
 pushgp
-pushi 3
+pushi 2
 padd
 pushl 0
 loadn
@@ -78,12 +77,12 @@ pushi 5
 inf
 jz fim_while_1
 pushgp
-pushi 3
+pushi 2
 padd
 pushl 1
 loadn
 pushgp
-pushi 3
+pushi 2
 padd
 pushl 2
 loadn
@@ -99,23 +98,23 @@ storel 1
 jump while_1
 fim_while_1: 
 pushgp
-pushi 3
+pushi 2
 padd
 pushl 0
 loadn
 storel 3
 pushgp
-pushi 3
+pushi 2
 padd
 pushl 0
 pushgp
-pushi 3
+pushi 2
 padd
 pushl 2
 loadn
 storen
 pushgp
-pushi 3
+pushi 2
 padd
 pushl 2
 pushl 3
