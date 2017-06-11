@@ -27,21 +27,27 @@ fim_while_3:
 pusha func_ordena
 call
 nop
+pushgp
+pushi 3
+padd
 pushi 0
+loadn
+writei
+pushi 1
 storel 0
 while_4: 
 pushl 0
 pushi 5
 inf
 jz fim_while_4
+pushs "   ->   "
+writes
 pushgp
 pushi 3
 padd
 pushl 0
 loadn
 writei
-pushs "   ->   "
-writes
 pushl 0
 pushi 1
 add

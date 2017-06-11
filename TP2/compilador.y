@@ -44,7 +44,6 @@
 %%
 Programa : Decls Instrucoes Funcoes MainFunc		{	asprintf(&$$, "pushi 0\n"
 																	  "pushi 0\n"
-																	  "pushi 0\n"
 																	  "%s%s%s%s", $1, $2, $4, $3);
 														printf("%s", $$);		 	}
 	   	 ;
@@ -521,7 +520,7 @@ int yyerror (char *s) {
 int main() {
 	funcaoAtual = strdup("GLOBAL");
 	local = 0;
-	count = 3;
+	count = 2;
 	varGlobais = g_tree_new((GCompareFunc)strcmp);
 	funcoes = g_tree_new((GCompareFunc)strcmp);
 	yyparse();

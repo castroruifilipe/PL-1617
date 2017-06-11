@@ -31,10 +31,11 @@ Main {
     }
 
     ordena();
-    i = 0;
+    print array[0];
+    i = 1;
     while (i < 5) {
-        print array[i];
         print "   ->   ";
+        print array[i];
         i = i + 1;
     }  
 }
