@@ -26,7 +26,7 @@
 [-]?[0-9]+							{	yylval.valString = strdup(yytext);
 										return VALOR;						}
 
-[-*/;\[\],=><!+\(\)\{\}%\|&]			{	return yytext[0];	}
+[-*/;\[\],=><!+\(\)\{\}%\|&]		{	return yytext[0];	}
 
 [_a-zA-Z][_A-Za-z0-9]*				{	yylval.valString = strdup(yytext);
 										return DESIGNACAO;					}

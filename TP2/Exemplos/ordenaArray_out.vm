@@ -2,7 +2,7 @@ pushi 0
 pushn 5
 start
 pushi 0
-pushs "Insira 1 a 1 os 5 numeros que pretende ordenar"
+pushs "Insira 1 a 1 os 5 numeros que pretende ordenar\n"
 writes
 while_3: 
 pushl 0
@@ -38,7 +38,7 @@ padd
 pushl 0
 loadn
 writei
-pushs " -> "
+pushs "   ->   "
 writes
 pushl 0
 pushi 1

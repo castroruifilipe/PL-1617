@@ -1,0 +1,78 @@
+pushi 0
+start
+pushn 10
+pushi 0
+pushi 0
+pushi 0
+pushs "Insira 1 a 1 a sequência de números\n"
+writes
+read
+atoi
+storel 12
+while_1: 
+pushl 12
+pushi 0
+sup
+pushl 10
+pushi 10
+inf
+mul
+jz fim_while_1
+pushl 12
+pushi 2
+mod
+pushi 0
+equal
+jz else_0
+jump fim_if_0: 
+else_0:
+pushfp
+pushi 0
+padd
+pushl 10
+pushl 12
+storen
+pushl 10
+pushi 1
+add
+storel 10
+fim_if_0: 
+read
+atoi
+storel 12
+jump while_1
+fim_while_1: 
+pushs "Inseriu "
+writes
+pushl 10
+writei
+pushs " numeros impares\n"
+writes
+pushfp
+pushi 0
+padd
+pushi 0
+loadn
+writei
+pushi 1
+storel 11
+while_2: 
+pushl 11
+pushl 10
+inf
+jz fim_while_2
+pushs "   :   "
+writes
+pushfp
+pushi 0
+padd
+pushl 11
+loadn
+writei
+pushl 11
+pushi 1
+add
+storel 11
+jump while_2
+fim_while_2: 
+stop

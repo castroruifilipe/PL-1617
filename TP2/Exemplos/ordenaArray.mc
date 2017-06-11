@@ -23,7 +23,7 @@ FUNCAO ordena() {
 
 Main {
     Int i = 0;
-    print "Insira 1 a 1 os 5 numeros que pretende ordenar";
+    print "Insira 1 a 1 os 5 numeros que pretende ordenar\n";
 
     while (i < 5) {
         read array[i];
@@ -34,7 +34,7 @@ Main {
     i = 0;
     while (i < 5) {
         print array[i];
-        print " -> ";
+        print "   ->   ";
         i = i + 1;
     }  
 }

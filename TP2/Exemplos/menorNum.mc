@@ -6,7 +6,7 @@ MAIN {
     print "Insira quantos quer ler: \n";
     read n;
 
-    print "De seguida insira os valores";
+    print "De seguida insira os valores\n";
     read numLido;
     menor = numLido;
 

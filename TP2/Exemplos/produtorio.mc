@@ -6,7 +6,7 @@ Main {
 
     resultado = 1;
 
-    print "Insira 1 a 1 os numeros que quer multiplicar";
+    print "Insira 1 a 1 os numeros que quer multiplicar\n";
 
     while (i < n) {
         read numLido;

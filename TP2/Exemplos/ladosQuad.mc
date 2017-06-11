@@ -11,9 +11,9 @@ MAIN {
     read d;
 	
     IF ((a == b) & (b == c) & (c == d)) {
-		PRINT "É um Quadrado";
+		PRINT "É um Quadrado\n";
 	}
 	ELSE {
-		PRINT "Os lados não correspondem a um quadrado";
+		PRINT "Os lados não correspondem a um quadrado\n";
 	}
 }

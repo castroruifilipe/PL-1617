@@ -6,7 +6,7 @@ pushi 0
 pushi 0
 pushi 1
 storel 0
-pushs "Insira 1 a 1 os numeros que quer multiplicar"
+pushs "Insira 1 a 1 os numeros que quer multiplicar\n"
 writes
 while_0: 
 pushl 2

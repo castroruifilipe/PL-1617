@@ -1,0 +1,51 @@
+pushi 0
+start
+pushi 0
+pushi 0
+pushs "Insira 1 a 1 a sequência de números\n"
+writes
+read
+atoi
+storel 1
+while_1: 
+pushl 1
+pushi 0
+sup
+jz fim_while_1
+pushl 1
+pushi 2
+mod
+pushi 0
+equal
+jz else_0
+pushs "O numero "
+writes
+pushl 1
+writei
+pushs " não é ímpar\n"
+writes
+jump fim_if_0: 
+else_0:
+pushs "O número "
+writes
+pushl 1
+writei
+pushs " é ímpar\n"
+writes
+pushl 0
+pushi 1
+add
+storel 0
+fim_if_0: 
+read
+atoi
+storel 1
+jump while_1
+fim_while_1: 
+pushs "Inseriu "
+writes
+pushl 0
+writei
+pushs " números ímpares"
+writes
+stop

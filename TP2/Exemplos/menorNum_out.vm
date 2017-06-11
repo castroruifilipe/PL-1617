@@ -8,7 +8,7 @@ writes
 read
 atoi
 storeg 1
-pushs "De seguida insira os valores"
+pushs "De seguida insira os valores\n"
 writes
 read
 atoi
@@ -36,7 +36,7 @@ sub
 storeg 1
 jump while_1
 fim_while_1: 
-pushs "O menor numero introduzido foi:"
+pushs "O menor numero introduzido foi: "
 writes
 pushl 1
 writei

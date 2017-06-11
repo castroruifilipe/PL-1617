@@ -36,11 +36,11 @@ pushl 3
 equal
 mul
 jz else_0
-pushs "É um Quadrado"
+pushs "É um Quadrado\n"
 writes
 jump fim_if_0: 
 else_0:
-pushs "Os lados não correspondem a um quadrado"
+pushs "Os lados não correspondem a um quadrado\n"
 writes
 fim_if_0: 
 stop
