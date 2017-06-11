@@ -276,7 +276,7 @@ Instrucao : Var '=' Expr ';'												{	asprintf(&$$, "%s%s%s", $1.prep_atribu
 		 | DESIGNACAO '(' Expr ')' ';'										{	if((auxFuncoes = (int *)g_tree_lookup(funcoes,$1)) != NULL){
 			  																		if(*auxFuncoes == 1){
 			  																			asprintf(&$$, "%s"
-																						  			  "pushg 1\n"
+																						  			  "storeg 1\n"
 																						  			  "pusha func_%s\n"
 		  																							  "call\n"
 																									  "nop\n", $3, $1);
