@@ -1,0 +1,145 @@
+pushi 0
+start
+pushn 4
+pushn 2
+pushn 2
+pushi 0
+pushi 0
+pushi 0
+pushs "Insira os valores da matriz\n"
+writes
+pushfp
+pushi 0
+padd
+pushi 0
+pushi 2
+mul
+pushi 0
+add
+read
+atoi
+storen
+pushfp
+pushi 0
+padd
+pushi 0
+pushi 2
+mul
+pushi 1
+add
+read
+atoi
+storen
+pushfp
+pushi 0
+padd
+pushi 1
+pushi 2
+mul
+pushi 0
+add
+read
+atoi
+storen
+pushfp
+pushi 0
+padd
+pushi 1
+pushi 2
+mul
+pushi 1
+add
+read
+atoi
+storen
+pushs "Insira os valores do vetor\n"
+writes
+pushfp
+pushi 4
+padd
+pushi 0
+read
+atoi
+storen
+pushfp
+pushi 4
+padd
+pushi 1
+read
+atoi
+storen
+pushi 0
+storel 8
+while_1: 
+pushl 8
+pushi 2
+inf
+jz fim_while_1
+pushi 0
+storel 10
+pushi 0
+storel 9
+while_0: 
+pushl 9
+pushi 2
+inf
+jz fim_while_0
+pushl 10
+pushfp
+pushi 0
+padd
+pushl 8
+pushi 2
+mul
+pushl 9
+add
+loadn
+pushfp
+pushi 4
+padd
+pushl 9
+loadn
+mul
+add
+storel 10
+pushl 9
+pushi 1
+add
+storel 9
+jump while_0
+fim_while_0: 
+pushfp
+pushi 6
+padd
+pushl 8
+pushl 10
+storen
+pushl 8
+pushi 1
+add
+storel 8
+jump while_1
+fim_while_1: 
+pushs "A resultado é: \n"
+writes
+pushs "["
+writes
+pushfp
+pushi 6
+padd
+pushi 0
+loadn
+writei
+pushs "]\n"
+writes
+pushs "["
+writes
+pushfp
+pushi 6
+padd
+pushi 1
+loadn
+writei
+pushs "]"
+writes
+stop
